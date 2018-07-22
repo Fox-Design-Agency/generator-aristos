@@ -1,11 +1,12 @@
 {
-  "name": "aristos-node-cms",
+  "name": "project-name",
   "homepage": "https://foxdesignagency.com/aristos",
-  "version": "0.0.3",
-  "description": "A basic EJS CMS built with love, powered by hardwork, JQuery, Gulp, Webpack, Mocha, Mongo, and Nodejs",
+  "version": "0.0.4",
+  "description": "Put in your project description",
   "keywords": [
     "Nodejs CMS",
-    "Fox Design Agency, Aristos CMS"
+    "Fox Design Agency", 
+    "Aristos CMS"
   ],
   "main": "index.js",
   "scripts": {
@@ -14,11 +15,6 @@
     "test": "SET NODE_ENV=test && nodemon --exec mocha --recursive -R min",
     "temps": "gulp styles && gulp adminStyles && gulp scripts",
     "preview": "SET NODE_ENV=production && node ."
-  },
-  "author": "Christopher Fox (https://foxchrisrealthe.com/)",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Fox-Design-Agency/Aristos-CMS-node"
   },
   "license": "ISC",
   "dependencies": {
