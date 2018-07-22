@@ -62,7 +62,7 @@ module.exports = class extends Generator {
         store: true
       },
       {
-        type: "input",
+        type: "password",
         name: "adminPass",
         message: "What is your admin password?",
         store: true
@@ -74,7 +74,7 @@ module.exports = class extends Generator {
     this.fs.copy(this.templatePath("package.json"), "package.json");
     // this.fs.copy(this.templatePath("env"), ".env");
     this.fs.copy(this.templatePath("process.json"), "process.json");
-    this.fs.copy(this.templatePath(".gitignore", ".gitignore"))
+    this.fs.copy(this.templatePath(".gitignore"), ".gitignore");
 
     this.fs.copy(this.templatePath("CHANGELOG.md"), "CHANGELOG.md");
     this.fs.copy(this.templatePath("COPYRIGHT.md"), "COPYRIGHT.md");
@@ -109,15 +109,22 @@ module.exports = class extends Generator {
           return console.log(err);
         }
         const db = client.db(prompts.dbName);
-        db.collection("users").insertOne({
-          username: prompts.adminUser,
-          password: prompts.adminPass,
-          admin: 1
-        }, function(err, r){
-            if (err) {
-                return console.log(err);
+        bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(prompts.adminPass, salt, (err, hash) => {
+            db.collection("users").insertOne(
+              {
+                username: prompts.adminUser,
+                password: hash,
+                admin: 1
+              },
+              function(err, r) {
+                if (err) {
+                  return console.log(err);
+                }
+                client.close();
               }
-            client.close()
+            );
+          });
         });
       }
     );
