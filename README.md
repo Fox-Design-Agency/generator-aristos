@@ -6,8 +6,10 @@ This is the Node version for the Aristos Content Managment System (CMS).
 
 ## Getting Started
 
+You will can globally install the project and you will need yo if you do not have it.
 ```
 npm install -g generator-aristos
+npm install -g yo
 ```
 When that is done, just make a folder, go into said folder and run the generator.
 You will be prompted for information so have this ready before starting the installer:

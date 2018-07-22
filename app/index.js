@@ -18,13 +18,25 @@ module.exports = class extends Generator {
 
     // And you can then access it later; e.g.
     // this.log(this.options.appname);
-
-    this.templatePath();
     this.log("Hey! Welcome the super neat Aristos Generator!!!");
+    this.log("You'll just need to answer a few questions, and then");
+    this.log("you should be able to build cool stuff.");
+    this.log("");
+    this.log("Make sure that you have this info ready:");
+    this.log("  project name");
+    this.log("  site title");
+    this.log("  mongo uri");
+    this.log("  mongo db name");
+    this.log("  admin username");
+    this.log("  admin pass");
+    this.log("");
+    this.log("Have fun!!");
   }
   //initialize
   initialize() {
-    this.log("Hey! Welcome the super neat Aristos Generator!!!");
+    this.log("Now that you answered all that stuff, it's time to generate.");
+    this.log("This will take a moment...");
+    this.log("or two...");
   }
   //prompt
   prompting() {
@@ -74,7 +86,7 @@ module.exports = class extends Generator {
     this.fs.copy(this.templatePath("package.json"), "package.json");
     // this.fs.copy(this.templatePath("env"), ".env");
     this.fs.copy(this.templatePath("process.json"), "process.json");
-    this.fs.copy(this.templatePath(".gitignore"), ".gitignore");
+    this.fs.copy(this.templatePath("_.gitignore"), ".gitignore");
 
     this.fs.copy(this.templatePath("CHANGELOG.md"), "CHANGELOG.md");
     this.fs.copy(this.templatePath("COPYRIGHT.md"), "COPYRIGHT.md");
@@ -145,7 +157,13 @@ module.exports = class extends Generator {
   methodEnd() {
     this.config.delete("promptValues");
     this.log(
-      "it's all over and you have stuffs to work with and what not... enjoy!"
+      "it's all over and you have stuffs to work with and what not..."
+    );
+    this.log(
+      "Below you will find a list of all the files that got placed intpo your folder."
+    );
+    this.log(
+      "Have fun and stuff!"
     );
   }
 };
