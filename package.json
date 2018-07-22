@@ -1,0 +1,22 @@
+{
+  "name": "generator-aristos",
+  "version": "0.0.1",
+  "description": "create aristos cms fast with yeoman generator.",
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "files": [
+    "app"
+  ],
+  "author": {
+    "name": "Christopher Fox"
+  },
+  "main": "app/index.js",
+  "scripts": {
+    "test": ""
+  },
+  "dependencies": {
+    "mongodb": "^3.1.1",
+    "yeoman-generator": "^3.0.0"
+  }
+}

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="<%= description %>">
+    <meta name="keywords" content="<%= keywords %>">
+    <meta name="author" content="<%= author %>">
+
+    <title>Aristos CMS -
+        <%= title %>
+    </title>
+     <!-- build:css(content/temp) /styles/theme.css-->
+     <link rel="stylesheet" href="/styles/theme.css" />
+     <!-- endbuild -->
+</head>
+
+<body>
+    <nav class="header__main">
+    <div class="header__menu-icon">
+    <div class="header__menu-icon__middle"></div>
+</div>
+<div class="header__brand">
+        <a href="/">Aristos CMS</a>
+</div>
+        <div class="">
+            <ul class="header__menu-content">
+                <% pages.forEach(function(page){ %>
+
+                    <% if (page.slug == "home"){ %>
+                        <li>
+                            <a class="header__menu-content--link" href="/">
+                                <%= page.title %>
+                            </a>
+                        </li>
+                        <% } else{ %>
+                            <li>
+                                <a class="header__menu-content--link" href="/<%= page.slug %>">
+                                    <%= page.title %>
+                                </a>
+                            </li>
+                            <% } %>
+                                <% }) %>
+
+            </ul>
+            <ul class="header__menu-content header__menu-content--right">
+                <% if (user) { %>
+                    <li>
+                        <a class="header__menu-content--link" href="/users/logout">Hi,
+                            <%= user.username %> ( Logout )</a>
+                    </li>
+                    <% } else{ %>
+                        <li>
+                            <a class="header__menu-content--link" href="/users/register">Register</a>
+                        </li>
+                        <li>
+                            <a class="header__menu-content--link" href="/users/login">Log in</a>
+                        </li>
+                        <% } %>
+                            <% if (user && user.admin == 1) { %>
+                                <li>
+                                    <a class="header__menu-content--link" href="/admin">Admin Area</a>
+                                </li>
+                                <% } %>
+            </ul>
+        </div>
+    </nav>
+
+    <main role="main" class="">
