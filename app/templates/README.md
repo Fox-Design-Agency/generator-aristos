@@ -20,7 +20,7 @@ You will be prompted for information so have this ready before starting the inst
 Once you have this information, then make whatever you want.
 ```
 mkdir <whatever you name your directory>
-cd <whateevr you named your directory>
+cd <whatevevr you named your directory>
 yo aristos
 ```
 
