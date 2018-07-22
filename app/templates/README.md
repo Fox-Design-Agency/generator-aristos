@@ -1,17 +1,30 @@
 # Aristos CMS - Node Version
 
 - **Finalizing the update stream**
-- **Writing intial startup sequence**
-- **Finishing the build step command**
 - **project will be production ready after rewrite**
 
 This is the Node version for the Aristos Content Managment System (CMS).
 
 ## Getting Started
 
-Right now, there is no easy way to get started with the Aristos CMS, below are items being worked on to make this an easier process.
+```
+npm install -g generator-aristos
+```
+When that is done, just make a folder, go into said folder and run the generator.
+You will be prompted for information so have this ready before starting the installer:
+- Project Name
+- Website Name (Not the Url, just the name)
+- Mongodb URI 
+- admin username
+- admin password
+Once you have this information, then make whatever you want.
+```
+mkdir <whatever you name your directory>
+cd <whateevr you named your directory>
+yo aristos
+```
 
-[Aristos Builder](https://aristosbuilder.com/) is a great resource to help you get started.
+Soon, [Aristos Builder](https://aristosbuilder.com/) will be a great resource to help you get started. It's just pretty lame right now.
 
 For documentation, check out [Fox Design Agency](https://foxdesignagency.com/aristos/documentation)
 
@@ -28,7 +41,7 @@ For documentation, check out [Fox Design Agency](https://foxdesignagency.com/ari
 
 ## Contributing
 
-currently no contributions outside of [Fox Design Agency](https://foxdesignagency.com) will be accepted.
+Currently no contributions outside of [Fox Design Agency](https://foxdesignagency.com) will be accepted. This will change soon.
 
 ## Acknowledgments
 
