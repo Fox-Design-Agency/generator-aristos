@@ -1,6 +1,6 @@
 const MediaCategory = require("../../mediaCategory");
 /* Aristos Logger Path */
-const Logger = require("../../../../AristosStuff/AristosLogger/AristosLogger").Logger;
+const addErrorEvent = require("../../../../AristosStuff/AristosLogger/AristosLogger").addError;
 
 /**
  * Deletes a single image from the Media collection
@@ -8,5 +8,5 @@ const Logger = require("../../../../AristosStuff/AristosLogger/AristosLogger").L
  * @return {promise} A promise that resolves when the record is deleted
  */
 module.exports = id => {
-   MediaCategory.findByIdAndRemove({_id: id}).catch(err => Logger.error(err));
+   MediaCategory.findByIdAndRemove({_id: id}).catch(err => addErrorEvent(err, "media category error"));
 };

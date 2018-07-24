@@ -4,7 +4,7 @@ const browserSync = require("browser-sync").create();
 const reload = browserSync.reload;
 const nodemon = require("gulp-nodemon");
 
-gulp.task("watch", ["scripts", "styles", "nodemon"], () => {
+gulp.task("watch", ["nodemon"], () => {
   browserSync.init(null, {
     proxy: "http://localhost:3000",
     port: 3001
@@ -38,7 +38,9 @@ gulp.task("nodemon", function(cb) {
   var started = false;
 
   return nodemon({
-    script: "index.js"
+    script: "index.js",
+    ext:"js ejs",
+    ignore:["debug.json", "error.json", "info.json"]
   }).on("start", function() {
     /* to avoid nodemon being started multiple times */
     /* thanks @matthisk */

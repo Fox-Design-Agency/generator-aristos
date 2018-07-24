@@ -1,6 +1,4 @@
-const Logger = require("../../../AristosStuff/AristosLogger/AristosLogger")
-  .Logger;
-
+const addErrorEvent = require("../../../AristosStuff/AristosLogger/AristosLogger").addError;
 /* Page model queries */
 const CreatePage = require("../../adminModels/queries/page/CreatePage");
 const EditPage = require("../../adminModels/queries/page/EditPage");

@@ -1,6 +1,6 @@
 const Media = require("../../medias");
 /* Aristos Logger Path */
-const Logger = require("../../../../AristosStuff/AristosLogger/AristosLogger").Logger;
+const addErrorEvent = require("../../../../AristosStuff/AristosLogger/AristosLogger").addError;
 
 /**
  * Edits a single page in the Page collection
@@ -10,6 +10,6 @@ const Logger = require("../../../../AristosStuff/AristosLogger/AristosLogger").L
  */
 module.exports = (_id, mediaProps) => {
   return Media.findByIdAndUpdate({ _id }, mediaProps).catch(err =>{
-    Logger.error(err)
+    addErrorEvent(err, "media query error")
   });
 };

@@ -1,6 +1,6 @@
 const Note = require("../../note");
 /* Aristos Logger Path */
-const Logger = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger").Logger;
+const errorAddEvent = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger").addError;
 
 /**
  * Edits a single page in the Page collection
@@ -10,6 +10,6 @@ const Logger = require("../../../../../../important/AristosStuff/AristosLogger/A
  */
 module.exports = (_id, noteProps) => {
   return Note.findByIdAndUpdate({ _id }, noteProps).catch(err => {
-    Logger.error(err);
+    errorAddEvent(err, "note query error")
   });
 };

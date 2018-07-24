@@ -1,4 +1,4 @@
-const Logger = require("../../../AristosStuff/AristosLogger/AristosLogger").Logger;
+const addErrorEvent = require("../../../AristosStuff/AristosLogger/AristosLogger").addError;
 /* task model Queries */
 const GetLatestThreeTasks = require("../../../../expansion/upgrade/project-management/models/queries/tasks/FindLatestThreeTasks");
 

@@ -1,6 +1,6 @@
 const User = require("../../user");
 /* Aristos Logger Path */
-const Logger = require("../../../../AristosStuff/AristosLogger/AristosLogger").Logger;
+const addErrorEvent = require("../../../../AristosStuff/AristosLogger/AristosLogger").addError;
 
 /**
  * Deletes a single user from the User collection
@@ -8,5 +8,5 @@ const Logger = require("../../../../AristosStuff/AristosLogger/AristosLogger").L
  * @return {promise} A promise that resolves when the record is deleted
  */
 module.exports = _id => {
-  User.findByIdAndRemove(_id).catch(err => Logger.error(err));
+  User.findByIdAndRemove(_id).catch(err => addErrorEvent(err, "user query error"));
 };

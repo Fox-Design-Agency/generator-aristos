@@ -1,6 +1,5 @@
 const fs = require("fs-extra");
-const Logger = require("../../../AristosStuff/AristosLogger/AristosLogger")
-  .Logger;
+const addErrorEvent = require("../../../AristosStuff/AristosLogger/AristosLogger").addError;
 
 /* Media Category Model Queries */
 const FindAllMediaCategories = require("../../adminModels/queries/mediaCategories/FindAllMediaCategories");
@@ -84,7 +83,7 @@ module.exports = {
                 "content/public/images/" + CategoryProps.title,
                 err => {
                   if (err) {
-                    Logger.error(err);
+                    addErrorEvent(err, "media cats create error");
                   }
                 }
               );

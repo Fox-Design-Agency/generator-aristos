@@ -1,6 +1,6 @@
 const Media = require("../../medias");
 /* Aristos Logger Path */
-const Logger = require("../../../../AristosStuff/AristosLogger/AristosLogger").Logger;
+const addErrorEvent = require("../../../../AristosStuff/AristosLogger/AristosLogger").addError;
 
 /**
  * Finds a single page in the Page collection.
@@ -8,5 +8,5 @@ const Logger = require("../../../../AristosStuff/AristosLogger/AristosLogger").L
  * @return {promise} A promise that resolves with the page that matches the id
  */
 module.exports = _id => {
-  return Media.findById(_id).catch(err => Logger.error(err));
+  return Media.findById(_id).catch(err =>  addErrorEvent(err, "media query error"));
 };

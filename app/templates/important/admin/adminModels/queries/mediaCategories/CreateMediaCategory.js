@@ -1,6 +1,6 @@
 const MediaCategory = require("../../mediaCategory");
 /* Aristos Logger Path */
-const Logger = require("../../../../AristosStuff/AristosLogger/AristosLogger").Logger;
+const addErrorEvent = require("../../../../AristosStuff/AristosLogger/AristosLogger").addError;
 /**
  * Finds a single page in the Page collection.
  * @param {object} pageProps - Object containing <change this>
@@ -8,5 +8,5 @@ const Logger = require("../../../../AristosStuff/AristosLogger/AristosLogger").L
  */
 module.exports = mediaCategoryProps => {
   const mediaCategory = new MediaCategory(mediaCategoryProps);
-  mediaCategory.save().catch(err => Logger.error(err));
+  mediaCategory.save().catch(err => addErrorEvent(err, "media category error"));
 };

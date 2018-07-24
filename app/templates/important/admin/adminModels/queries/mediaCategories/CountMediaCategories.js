@@ -1,6 +1,6 @@
 const MediaCategory = require("../../mediaCategory");
 /* Aristos Logger Path */
-const Logger = require("../../../../AristosStuff/AristosLogger/AristosLogger").Logger;
+const addErrorEvent = require("../../../../AristosStuff/AristosLogger/AristosLogger").addError;
 /**
  * Finds a single page in the Page collection.
  * @param {object} pageProps - Object containing <change this>
