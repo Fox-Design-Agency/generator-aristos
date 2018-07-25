@@ -15,11 +15,11 @@
             <a href="/admin/logs-viewer/clear/<%= logname %>">Clear Log</a>
         </button>
     </div>
-<% if(infoLogs.length < 1){ %>
+    <% if(infoLogs.length < 1){ %>
         <div class="admin-section__dashboard-row__notepad"  id="logs-display">
             <h3 class="admin-page__none-of-something">There is nothing in the log...</h3>
         </div>
-<% }else{ %>
+    <% }else{ %>
     <table class="admin-table" id="logs-display">
         <thead>
             <tr>
@@ -38,7 +38,5 @@
             <% }) %>
         </tbody>
     </table>
-<% } %>
-
-
+    <% } %>
 <%- include("../_layouts/adminfooter") %>

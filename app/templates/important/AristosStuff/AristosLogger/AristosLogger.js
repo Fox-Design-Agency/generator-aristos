@@ -6,10 +6,8 @@
 *           **F003**   - Clear File Contents
 *           **F004**   - Read File Contents
 *           **F005**   - Add File Contents
-*           **F006**   - Update File Contents
-*           **F007**   - Get All File Contents
-*           **F008**   - Temp Test of Log Files
-*           **F009**   - Exports
+*           **F006**   - Temp Test of Log Files
+*           **F007**   - Exports
 *
 *``````````````````````````````````````````````````````````
 */

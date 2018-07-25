@@ -28,8 +28,6 @@ Soon, [Aristos Builder](https://aristosbuilder.com/) will be a great resource to
 
 For documentation, check out [Fox Design Agency](https://foxdesignagency.com/aristos/documentation)
 
-
-
 ## Changelog
 
 [Current Changelog](https://foxdesignagency.com/aristos/changelog)

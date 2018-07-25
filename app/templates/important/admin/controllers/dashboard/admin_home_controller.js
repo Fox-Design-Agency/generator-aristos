@@ -1,10 +1,5 @@
 const addErrorEvent = require("../../../AristosStuff/AristosLogger/AristosLogger")
   .addError;
-/* task model Queries */
-const GetLatestThreeTasks = require("../../../../expansion/upgrade/project-management/models/queries/tasks/FindLatestThreeTasks");
-
-/* contact message model Queries */
-const GetLatestThreeMessages = require("../../../../expansion/upgrade/contact/models/queries/FindLatestThreeMessages");
 
 /* the logs stuffs */
 const getAllInfoLogs = require("../../../AristosStuff/AristosLogger/AristosLogger")
@@ -21,8 +16,8 @@ module.exports = {
       req.app.locals.projectManagementExists &&
       req.app.locals.contactManagementExists
     ) {
-      const LatestThreeTasks = GetLatestThreeTasks();
-      const LatestThreeMessages = GetLatestThreeMessages();
+      const LatestThreeTasks = require("../../../../expansion/upgrade/project-management/models/queries/tasks/FindLatestThreeTasks")();
+      const LatestThreeMessages = require("../../../../expansion/upgrade/contact/models/queries/FindLatestThreeMessages")();
 
       Promise.all([LatestThreeTasks, LatestThreeMessages]).then(result => {
         return res.render("../../../important/admin/views/index", {
@@ -33,7 +28,8 @@ module.exports = {
         });
       });
     } else if (req.app.locals.projectManagementExists) {
-      GetLatestThreeTasks().then(tasks => {
+      const LatestThreeTasks = require("../../../../expansion/upgrade/project-management/models/queries/tasks/FindLatestThreeTasks");
+      LatestThreeTasks().then(tasks => {
         return res.render("../../../important/admin/views/index", {
           content: "",
           tasks: tasks,
@@ -41,7 +37,8 @@ module.exports = {
         });
       });
     } else if (req.app.locals.contactManagmentExists) {
-      GetLatestThreeMessages().then(messages => {
+      const LatestThreeMessages = require("../../../../expansion/upgrade/contact/models/queries/FindLatestThreeMessages");
+      LatestThreeMessages().then(messages => {
         return res.render("../../../important/admin/views/index", {
           content: "",
           message: messages,
@@ -68,8 +65,8 @@ module.exports = {
       req.app.locals.projectManagementExists &&
       req.app.locals.contactManagementExists
     ) {
-      const LatestThreeTasks = GetLatestThreeTasks();
-      const LatestThreeMessages = GetLatestThreeMessages();
+      const LatestThreeTasks = require("../../../../expansion/upgrade/project-management/models/queries/tasks/FindLatestThreeTasks")();
+      const LatestThreeMessages = require("../../../../expansion/upgrade/contact/models/queries/FindLatestThreeMessages")();
 
       Promise.all([LatestThreeTasks, LatestThreeMessages]).then(result => {
         return res.render("../../../important/admin/views/index", {
@@ -80,7 +77,8 @@ module.exports = {
         });
       });
     } else if (req.app.locals.projectManagementExists) {
-      GetLatestThreeTasks().then(tasks => {
+      const LatestThreeTasks = require("../../../../expansion/upgrade/project-management/models/queries/tasks/FindLatestThreeTasks");
+      LatestThreeTasks().then(tasks => {
         return res.render("../../../important/admin/views/index", {
           content: "",
           tasks: tasks,
@@ -88,7 +86,8 @@ module.exports = {
         });
       });
     } else if (req.app.locals.contactManagmentExists) {
-      GetLatestThreeMessages().then(messages => {
+      const LatestThreeMessages = require("../../../../expansion/upgrade/contact/models/queries/FindLatestThreeMessages");
+      LatestThreeMessages().then(messages => {
         return res.render("../../../important/admin/views/index", {
           content: "",
           message: messages,
