@@ -1,7 +1,6 @@
 const gulp = require("gulp");
 const watch = require("gulp-watch");
 const browserSync = require("browser-sync").create();
-const reload = browserSync.reload;
 const nodemon = require("gulp-nodemon");
 
 gulp.task(
