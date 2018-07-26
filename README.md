@@ -1,6 +1,6 @@
 # Aristos Generator
 - **Finalizing the update stream**
-- **project will be production ready after rewrite**
+- **project will be mostly production ready after rewrite**
 
 This is the Node version for the Aristos Content Managment System (CMS).
 
@@ -11,6 +11,7 @@ You will can globally install the project and you will need yo if you do not hav
 npm install -g generator-aristos
 npm install -g yo
 ```
+
 When that is done, just make a folder, go into said folder and run the generator.
 You will be prompted for information so have this ready before starting the installer:
 - Project Name
@@ -20,16 +21,48 @@ You will be prompted for information so have this ready before starting the inst
 - admin username
 - admin password
 Once you have this information, then make whatever you want.
+
 ```
 mkdir <whatever you name your directory>
 cd <whatevevr you named your directory>
 yo aristos
 ```
 
+If you would like to also install an upgrade/plugin package, add the appropiate flag:
+```
+--blog
+--contact
+--data
+--documentation
+--newsletter
+--portfolio
+--products
+--management
+```
+
+an example of using a simple or multiple option flags are as shown:
+```
+yo aristos --blog
+yo aristos --products --blog
+```
+Each option flag needs a space after it, otherwise two options will be seen by the generator as a single option and not function correctly.
+
+The current state of the upgrade/plugin packages should also be noted:
+#### Upgrades
+    - blog: comments are not a thing right now, but should be
+    - contact: can recieve contact but not much else
+    - data: not a thing
+    - documentation: Mostly works
+    - newsletter: not a thing
+    - portfolio: Mostly works, editing images doesnt always work on first try
+    - products: Mostly works
+    - management: Needs complete rewrite
+#### Plugins
+    - printful: option flag not set, needs complete rewrite after product upgrade becomes finalized
+
 Soon, [Aristos Builder](https://aristosbuilder.com/) will be a great resource to help you get started. It's just pretty lame right now.
 
 For documentation, check out [Fox Design Agency](https://foxdesignagency.com/aristos/documentation)
-
 
 
 ## Changelog
@@ -51,18 +84,13 @@ Currently no contributions outside of [Fox Design Agency](https://foxdesignagenc
 
 ## License
 
-All Aristos code is Copyright 2018 by Fox Design Agency.
+Copyright 2018 Fox Design Agency
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+https://github.com/Fox-Design-Agency/Aristos-CMS-node
+https://foxdesignagency.com/aristos
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
