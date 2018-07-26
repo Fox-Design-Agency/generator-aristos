@@ -3,12 +3,12 @@
 This is the Node version for the Aristos Content Managment System (CMS).
 
 ## Table of Contents
- - [Getting Started](#Getting-Started)
- - [Deploying](#Deploying)
- - [Changelog](#Changelog)
- - [Authors](#Authors)
- - [Contributing](#Contributing)
- - [License](#License)
+ - [Getting Started](#getting-started)
+ - [Deploying](#deploying)
+ - [Changelog](#changelog)
+ - [Authors](#authors)
+ - [Contributing](#contributing)
+ - [License](#license)
 
 ## Getting Started
 
