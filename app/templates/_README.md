@@ -1,33 +1,45 @@
-# This project has been made pretty neat by the Aristos CMS
+# This project has been made pretty neat with the Aristos CMS
 
 This is the Node version for the Aristos Content Managment System (CMS).
 
 ## Table of Contents
-
-
+ - [Getting Started](#Getting-Started)
+ - [Deploying](#Deploying)
+ - [Changelog](#Changelog)
+ - [Authors](#Authors)
+ - [Contributing](#Contributing)
+ - [License](#License)
 
 ## Getting Started
 
+To run your new Aristos build, run:
+
 ```
-npm install -g generator-aristos
+npm run dev
 ```
-When that is done, just make a folder, go into said folder and run the generator.
-You will be prompted for information so have this ready before starting the installer:
-- Project Name
-- Website Name (Not the Url, just the name)
-- Mongodb URI 
-- admin username
-- admin password
-Once you have this information, then make whatever you want.
-```
-mkdir <whatever you name your directory>
-cd <whatevevr you named your directory>
-yo aristos
-```
+
+This will run the gulp scripts, gulp styles, and gulp watch commands. Browsersync will then automatically pull up your build and you can start to build. The gulp watch command will be wtching specific folders for changes will automatically refresh your browser and server when needed.
 
 Soon, [Aristos Builder](https://aristosbuilder.com/) will be a great resource to help you get started. It's just pretty lame right now.
-
 For documentation, check out [Fox Design Agency](https://foxdesignagency.com/aristos/documentation)
+
+## Deploying
+
+When you are ready to deploy, get your code into wherever it is that you wish (we will be writing step by step guides on deploying to aws soon), and run:
+
+```
+npm run build
+```
+
+This will build your project into a dist folder. The NODE_ENV will need to be set to production but the project can be served from the root, as the index.js switch where it required the app.js from based on the NODE_ENV variable.
+
+If you are using pm2, then there is a process.json included in the root of the project that sets the NODE_ENV variable for you. Simply run (you will need pm2 installed to run this command):
+
+```
+pm2 start process.json
+```
+
+refer to their (documentation)[http://pm2.keymetrics.io/docs/usage/application-declaration/] for more options while working with the process.json file.
 
 ## Changelog
 
@@ -41,10 +53,6 @@ For documentation, check out [Fox Design Agency](https://foxdesignagency.com/ari
 ## Contributing
 
 Currently no contributions outside of [Fox Design Agency](https://foxdesignagency.com) will be accepted. This will change soon.
-
-## Acknowledgments
-
-* This will be updated soon.
 
 ## License
 
