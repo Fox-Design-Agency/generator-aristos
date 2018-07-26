@@ -3,7 +3,9 @@
   "version": "0.0.9",
   "description": "create aristos cms fast with yeoman generator.",
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "aristos-cms",
+    "nodejs-starter"
   ],
   "files": [
     "app"

@@ -12,12 +12,18 @@ module.exports = class extends Generator {
   //   }
   constructor(args, opts) {
     super(args, opts);
+    /* This makes upgrade available as options to be passed via --name */
+    this.option("blog");
+    this.option("contact");
+    this.option("data");
+    this.option("documentation");
+    this.option("newsletter");
+    this.option("portfolio");
+    this.option("products");
+    this.option("management");
+    /* This makes the plugins available as options */
 
-    // This makes `appname` a required argument.
-    this.argument("appname", { type: String, required: false });
-
-    // And you can then access it later; e.g.
-    // this.log(this.options.appname);
+    /* start initial logs */
     this.log("Hey! Welcome the super neat Aristos Generator!!!");
     this.log("You'll just need to answer a few questions, and then");
     this.log("you should be able to build cool stuff.");
@@ -31,6 +37,7 @@ module.exports = class extends Generator {
     this.log("  admin pass");
     this.log("");
     this.log("Have fun!!");
+    /* end intial logs */
   }
   //initialize
   initialize() {
@@ -79,23 +86,25 @@ module.exports = class extends Generator {
         message: "What is your admin password?",
         store: true
       }
-    ]).then(answers => {});
+    ]);
   }
   rootStuffs() {
+    let prompts = this.config.get("promptValues");
     /* root stuffs */
-    this.fs.copy(this.templatePath("package.json"), "package.json");
+    this.fs.copyTpl(this.templatePath("_package.json"), "package.json", {
+      projectName: prompts.name
+    });
     // this.fs.copy(this.templatePath("env"), ".env");
-    this.fs.copy(this.templatePath("process.json"), "process.json");
+    this.fs.copy(this.templatePath("_process.json"), "process.json");
     this.fs.copy(this.templatePath("_.gitignore"), ".gitignore");
 
-    this.fs.copy(this.templatePath("CHANGELOG.md"), "CHANGELOG.md");
-    this.fs.copy(this.templatePath("COPYRIGHT.md"), "COPYRIGHT.md");
-    this.fs.copy(this.templatePath("LICENSE.md"), "LICENSE.md");
-    this.fs.copy(this.templatePath("README.md"), "README.md");
+    this.fs.copy(this.templatePath("_CHANGELOG.md"), "CHANGELOG.md");
+    this.fs.copy(this.templatePath("_LICENSE.md"), "LICENSE.md");
+    this.fs.copy(this.templatePath("_README.md"), "README.md");
 
-    this.fs.copy(this.templatePath("index.js"), "index.js");
-    this.fs.copy(this.templatePath("gulpfile.js"), "gulpfile.js");
-    this.fs.copy(this.templatePath("webpack.config.js"), "webpack.config.js");
+    this.fs.copy(this.templatePath("_index.js"), "index.js");
+    this.fs.copy(this.templatePath("_gulpfile.js"), "gulpfile.js");
+    this.fs.copy(this.templatePath("_webpack.config.js"), "webpack.config.js");
   }
   importantStuffs() {
     this.fs.copy(this.templatePath("important"), "important");
@@ -142,7 +151,64 @@ module.exports = class extends Generator {
     );
   }
   expansionStuffs() {
-    this.fs.copy(this.templatePath("expansion"), "expansion");
+    if (this.options.blog) {
+      this.fs.copy(
+        this.templatePath("expansion/upgrade/blog"),
+        "expansion/upgrade/blog"
+      );
+    }
+    if (this.options.contact) {
+      this.fs.copy(
+        this.templatePath("expansion/upgrade/contact"),
+        "expansion/upgrade/contact"
+      );
+    }
+    if (this.options.data) {
+      this.fs.copy(
+        this.templatePath("expansion/upgrade/data-science"),
+        "expansion/upgrade/data-science"
+      );
+    }
+    if (this.options.documentation) {
+      this.fs.copy(
+        this.templatePath("expansion/upgrade/documentation-builder"),
+        "expansion/upgrade/documentation-builder"
+      );
+    }
+    if (this.options.newletter) {
+      this.fs.copy(
+        this.templatePath("expansion/upgrade/newletter"),
+        "expansion/upgrade/newsletter"
+      );
+    }
+    if (this.options.portfolio) {
+      this.fs.copy(
+        this.templatePath("expansion/upgrade/portfolio-projects"),
+        "expansion/upgrade/portfolio-projects"
+      );
+    }
+    if (this.options.products) {
+      this.fs.copy(
+        this.templatePath("expansion/upgrade/products"),
+        "expansion/upgrade/products"
+      );
+      /* install paypal-rest-sdk */
+    }
+    if (this.options.management) {
+      this.fs.copy(
+        this.templatePath("expansion/upgrade/project-management"),
+        "expansion/upgrade/project-management"
+      );
+    }
+    this.fs.copy(this.templatePath("expansion/index.js"), "expansion/index.js");
+    this.fs.copy(
+      this.templatePath("expansion/upgrade/index.js"),
+      "expansion/upgrade/index.js"
+    );
+    this.fs.copy(
+      this.templatePath("expansion/plugins/index.js"),
+      "expansion/plugins/index.js"
+    );
   }
   contentStuffs() {
     this.fs.copy(this.templatePath("content"), "content");
@@ -156,14 +222,21 @@ module.exports = class extends Generator {
   //end
   methodEnd() {
     this.config.delete("promptValues");
+
+    this.log("it's all over and you have stuffs to work with and what not...");
     this.log(
-      "it's all over and you have stuffs to work with and what not..."
+      "Below you will find a list of all the files that got placed into your folder."
     );
-    this.log(
-      "Below you will find a list of all the files that got placed intpo your folder."
-    );
-    this.log(
-      "Have fun and stuff!"
-    );
+    this.log("Have fun and stuff!");
+  }
+
+  install() {
+    this.on("end", function() {
+      this.installDependencies({
+        npm: true,
+        bower: false
+      });
+    });
+    this.npmInstall();
   }
 };
