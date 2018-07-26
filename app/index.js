@@ -200,6 +200,8 @@ module.exports = class extends Generator {
         "expansion/upgrade/project-management"
       );
     }
+    /* if no options are passed, the folders and index files still need to be a thing */
+    /* even if they are passed, they still need to be a ting */
     this.fs.copy(this.templatePath("expansion/index.js"), "expansion/index.js");
     this.fs.copy(
       this.templatePath("expansion/upgrade/index.js"),
@@ -231,12 +233,7 @@ module.exports = class extends Generator {
   }
 
   install() {
-    this.on("end", function() {
-      this.installDependencies({
-        npm: true,
-        bower: false
-      });
-    });
+    /* runs npm install at the end of folder creation */
     this.npmInstall();
   }
 };

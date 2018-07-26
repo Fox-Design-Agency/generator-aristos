@@ -2,6 +2,5 @@
 @import "normalize.css";
 @import "base/_mixins";
 @import "base/_global";
-@import "modules/_sprite.css";
 @import "modules/_footer";
 @import "modules/_header";
