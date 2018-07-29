@@ -7,7 +7,7 @@ const errorAddEvent = require("../../../../../../important/AristosStuff/AristosL
  * @return {promise} A promise that resolves with the Page that was created
  */
 module.exports = () => {
-  return Documentation.count({}).then(c => {
+  return Documentation.estimatedDocumentCount({}).then(c => {
       return c
     })
 };

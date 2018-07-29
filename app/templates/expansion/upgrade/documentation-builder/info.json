@@ -1,0 +1,28 @@
+{
+  "name": "documentation",
+  "folder": "documentation-builder",
+  "variable": "documentationExists",
+  "link": "/admin/documentation-builder",
+  "dropdownCategories": [
+    {
+      "name": "add documentation",
+      "link": "/admin/blogs/add-blog"
+    },
+    {
+      "name": "add category",
+      "link": "/admin/blog-categories/add-blog-category"
+    },
+    {
+      "name": "add changelog",
+      "link": "/admin/changelog-builder/add-log"
+    },
+    {
+      "name": "see all categories",
+      "link": "/admin/documentation-builder-categories"
+    },
+    {
+      "name": "see all changelogs",
+      "link": "/admin/changelog-builder"
+    }
+  ]
+}
