@@ -116,7 +116,7 @@ module.exports = class extends Generator {
         prompts.mongoURI
       }"},{"name": "site-title","info": "${
         prompts.site
-      }"},{"name":"aristosVersion","info": "0.0.5"},{"name": "sessionSecret","info": "asdibslvblblesiflbuibeb3893hbwp9fnb"}]`
+      }"},{"name":"aristosVersion","info": "0.1.0"},{"name": "sessionSecret","info": "sfjdnsjkfnslkejbnsifube93wjn8jg"}]`
     );
     //create db collection
     //hash pass

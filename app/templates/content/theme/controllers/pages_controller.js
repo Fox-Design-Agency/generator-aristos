@@ -14,7 +14,7 @@ module.exports = {
           author: ""
         });
       } else {
-        res.render("../views/index", {
+        res.render(`${page[0].template}`, {
           title: page[0].title,
           content: page[0].content,
           keywords: page[0].keywords,
@@ -32,13 +32,24 @@ module.exports = {
       if (page.length < 1) {
         res.redirect("/");
       } else {
-        res.render("index", {
-          title: page[0].title,
-          content: page[0].content,
-          keywords: page[0].keywords,
-          description: page[0].description,
-          author: page[0].author
-        });
+        if (typeof page[0].template !== "undefined") {
+          res.render(`${page[0].template}`, {
+            title: page[0].title,
+            content: page[0].content,
+            keywords: page[0].keywords,
+            description: page[0].description,
+            author: page[0].author
+          });
+        } else {
+          res.render("index"),
+            {
+              title: page[0].title,
+              content: page[0].content,
+              keywords: page[0].keywords,
+              description: page[0].description,
+              author: page[0].author
+            };
+        }
       }
     });
   } // end of any page function
