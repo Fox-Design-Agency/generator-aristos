@@ -1,7 +1,7 @@
 {
   "name": "<%= projectName %>",
   "homepage": "https://foxdesignagency.com/aristos",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "Put in your project description here.",
   "main": "index.js",
   "scripts": {
