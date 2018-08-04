@@ -1,9 +1,9 @@
-<% include _layouts/header %>
+<% include ../_layouts/header %>
     <h1>
         <%= title %>
     </h1>
-    <% include _layouts/messages/errors %>
-    <% include _layouts/messages/messages %>
+    <% include ../_layouts/messages/errors %>
+    <% include ../_layouts/messages/messages %>
 
     <form method="post" action="/admin/user-controls/register-user">
         <div>
@@ -28,4 +28,4 @@
         </div>
         <button type="submit">Register</button>
     </form>
-<% include _layouts/footer %>
+<% include ../_layouts/footer %>
