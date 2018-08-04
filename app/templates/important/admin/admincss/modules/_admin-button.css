@@ -1,5 +1,5 @@
 .admin-button {
-  border: 1px solid #f0f8ff;
+  border: 1px solid $colorFour;
   height: 50px;
   margin: 10px;
   cursor: pointer;
@@ -7,10 +7,10 @@
   transition: background-color 0.4s linear;
 
   &--main {
-    background: $contrastBackground;
+    background: $colorFive;
 
     &:hover {
-      background-color: $hoverSecondary;
+      background-color: $colorSeven;
       transition: background-color 0.4s linear;
     }
   }
@@ -19,7 +19,7 @@
     margin: 10px;
     cursor: pointer;
     width: 210px;
-    border: 1px solid $borderOne;
+    border: 1px solid $colorFour;
     background: $hoverSuccess;
     color: white;
 

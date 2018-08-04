@@ -53,7 +53,7 @@
                         <textarea class="admin-form--disabled-resize" rows="4" name="keywords" placeholder="Place your keywords seperated by a comma. Max of 300 characters. EX. neat blog, neater topic, neatest person"
                             maxlength="300"></textarea>
                     </div>
-                    <% if(printfulPluginExists){ %>
+                    <% if(typeof(printfulPluginExists) !== "undefined"){ %>
                         <div id="printful-section">
                             <div class="form-group-row">
                                 <div class="admin-form__group">

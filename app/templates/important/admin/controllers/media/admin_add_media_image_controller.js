@@ -1,4 +1,5 @@
-const addErrorEvent = require("../../../AristosStuff/AristosLogger/AristosLogger").addError;
+const addErrorEvent = require("../../../AristosStuff/AristosLogger/AristosLogger")
+  .addError;
 const fs = require("fs-extra");
 
 /* Media Model Queries */
@@ -48,26 +49,28 @@ module.exports = {
   create(req, res, next) {
     FindOneUserByID(req.session.passport.user).then(user => {
       if (user.admin === 1) {
-        let newMedia = req.files.file;
-        let path = "/General/" + req.files.file.name;
-        fs.ensureDir("content/public/images/General", err => {
-          if (err) {
-            addErrorEvent(err, "media create error");
-          }
-        });
-        newMedia.mv("content/public/images" + path, err => {
-          if (err) {
-            addErrorEvent(err, "media create error");
-          }
-        });
-        const mediaProps = {
-          title: "a new image",
-          alt: "a new image",
-          category: "General",
-          path: path
-        };
-        CreateMedia(mediaProps);
-        res.sendStatus(200);
+        if (req.app.locals.mediaSwitch) {
+          let newMedia = req.files.file;
+          let path = "/General/" + req.files.file.name;
+          fs.ensureDir("content/public/images/General", err => {
+            if (err) {
+              addErrorEvent(err, "media create error");
+            }
+          });
+          newMedia.mv("content/public/images" + path, err => {
+            if (err) {
+              addErrorEvent(err, "media create error");
+            }
+          });
+          const mediaProps = {
+            title: "a new image",
+            alt: "a new image",
+            category: "General",
+            path: path
+          };
+          CreateMedia(mediaProps);
+          res.sendStatus(200);
+        }
       } else {
         res.redirect("/users/login");
       }
@@ -122,7 +125,7 @@ module.exports = {
           // })
           if (imageFile !== "") {
             let newMedia = req.files.image;
-            newMedia.mv("content/public/images/" + path, (err)=> {
+            newMedia.mv("content/public/images/" + path, err => {
               if (err) {
                 addErrorEvent(err, "media uploadCreate error");
               }
@@ -239,7 +242,7 @@ module.exports = {
     let id = req.params.id;
     FindMediaByID(id).then(media => {
       let path = "content/public" + media.path;
-      fs.remove(path, (err) => {
+      fs.remove(path, err => {
         if (err) {
           addErrorEvent(err, "media delete error");
         } else {
