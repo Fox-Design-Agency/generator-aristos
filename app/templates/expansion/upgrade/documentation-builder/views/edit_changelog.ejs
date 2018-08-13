@@ -2,7 +2,13 @@
     <h2 class="admin-page__main-title">edit changelog</h2>
     <% include ../../../../important/admin/views/_layouts/messages/errors %>
     <% include ../../../../important/admin/views/_layouts/messages/messages %>
-    <button class="admin-button admin-button--main">  <a class="btn-text" href="/admin/changelog-builder">Back to Logs</a></button>
+    <button class="admin-button admin-button--add-something"> 
+        <a class="btn-text" href="/admin/changelog-builder">
+            <i class="fa fa-hand-point-left"></i>
+        </a>
+    </button>
+    <br>
+    <br>
 
     <form method="post" action="/admin/changelog-builder/edit-log/<%= id %>" enctype="multipart/form-data" class="admin-form">
 
@@ -46,10 +52,10 @@
             
         </div>
 </div>
-        <div>
+
 
         <button class="admin-button admin-button--submit">Submit</button>
-    </div>
+
     </form>
 
   <%- include("../../../../important/admin/views/_layouts/adminfooter") %>

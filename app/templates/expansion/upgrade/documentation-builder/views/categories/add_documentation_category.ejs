@@ -1,9 +1,13 @@
 <%- include("../../../../../important/admin/views/_layouts/adminheader") %>
     <h2 class="admin-page__main-title">add a documentation category</h2>
     <% include ../../../../../important/admin/views/_layouts/messages/errors %>
-    <button class="admin-button admin-button--main">
-        <a  href="/admin/documentation-builder-categories">Back to Categories</a>
+    <button class="admin-button admin-button--add-something">
+        <a  href="/admin/documentation-builder-categories">
+            <i class="fa fa-hand-point-left"></i>
+        </a>
     </button>
+    <br>
+    <br>
 
     <form method="post" action="/admin/documentation-builder-categories/add-documentation-category" class="admin-form">
         <div class="admin-form__form-options--bottom-group">

@@ -6,6 +6,8 @@
   width: 210px;
   transition: background-color 0.4s linear;
 
+  
+
   &--main {
     background: $colorFive;
 
@@ -15,10 +17,10 @@
     }
   }
   &--submit {
-    height: 50px;
-    margin: 10px;
+    height: 70px;
+    margin: 40px auto;
     cursor: pointer;
-    width: 210px;
+    width: 90%;
     border: 1px solid $colorFour;
     background: $hoverSuccess;
     color: white;
@@ -55,5 +57,31 @@
     transition: background-color 0.4s linear;
     color: white;
     height: 100%;
+  }
+  &--add-something{
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    bottom: 10px;
+    right: 10px;
+    border-radius: 50%;
+    background: $colorFive;
+    z-index: 10;
+
+    &--second{
+      bottom: 120px;
+    }
+    &--third{
+      bottom: 240px;
+    }
+    
+    & a {
+      font-size: 50px;
+    }
+
+    &:hover {
+      background-color: $colorSeven;
+      transition: background-color 0.4s linear;
+    }
   }
 }

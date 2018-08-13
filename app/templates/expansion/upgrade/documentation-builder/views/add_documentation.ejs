@@ -2,9 +2,11 @@
     <h2 class="admin-page__main-title">add documentation</h2>
     <% include ../../../../important/admin/views/_layouts/messages/errors %>
     <% include ../../../../important/admin/views/_layouts/messages/messages %>
-    <button class="admin-button admin-button--main">
-        <a  href="/admin/documentation-builder">Back to Docs</a>
+    <button class="admin-button admin-button--add-something">
+        <a  href="/admin/documentation-builder"><i class="fa fa-hand-point-left"></i></a>
     </button>
+    <br>
+    <br>
 
     <form method="post" action="/admin/documentation-builder/add-documentation" enctype="multipart/form-data" class="admin-form">
 
@@ -39,20 +41,19 @@
                     <div class="admin-form__group">
                         <label for="">Meta Description</label>
                         <textarea class="admin-form--disabled-resize" rows="4" name="description" placeholder="Place a brief description of this blog. Max of 320 characters including spaces."
-                            maxlength="320"></textarea>
+                            maxlength="320"><%= description %></textarea>
                     </div>
                     <div class="admin-form__group">
                         <label for="">Meta Keywords</label>
                         <textarea class="admin-form--disabled-resize" rows="4" name="keywords" placeholder="Place your keywords seperated by a comma. Max of 300 characters. EX. neat blog, neater topic, neatest person"
-                            maxlength="300"></textarea>
+                            maxlength="300"><%= keywords %></textarea>
                     </div>
                    
                 </div>
             </div>
 
-            <div>
                 <button class="admin-button admin-button--submit">Submit</button>
-            </div>
+
     </form>
 
     <%- include("../../../../important/admin/views/_layouts/adminfooter") %>

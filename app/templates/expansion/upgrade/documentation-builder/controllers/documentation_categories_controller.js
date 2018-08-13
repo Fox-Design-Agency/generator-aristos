@@ -64,7 +64,7 @@ module.exports = {
         }
 
         let title = req.body.title;
-        let slug = title.replace(/\s+/g, "-").toLowerCase();
+        let slug = title.replace(/s+/g, "-").toLowerCase();
         let author = req.body.author;
         let description = req.body.description;
         let keywords = req.body.keywords;
@@ -106,7 +106,8 @@ module.exports = {
                 slug: slug,
                 author: author,
                 description: description,
-                keywords: keywords
+                keywords: keywords,
+                sorting: 0
               };
               CreateDocumentationCategory(CategoryProps);
               req.flash("success_msg", "Documentation Category Added!");
@@ -148,7 +149,7 @@ module.exports = {
         }
 
         let title = req.body.title;
-        let slug = title.replace(/\s+/g, "-").toLowerCase();
+        let slug = title.replace(/s+/g, "-").toLowerCase();
         let id = req.params.id;
         let author = req.body.author;
         let description = req.body.description;
@@ -211,17 +212,18 @@ module.exports = {
     req.flash("success_msg", "Documentation Category Deleted!");
     res.redirect("/admin/documentation-builder-categories");
   } /* end of delete function */,
+
   reorder(req, res, next) {
     const User = FindOneUserByID(req.session.passport.user);
     User.then(user => {
       if (user.admin === 1) {
         let ids = req.body["id[]"];
         SortDocumentationCategories(ids);
-        /* look into this more */
-        //   req.app.locals.pages = sortedRes;
+       
       } else {
         res.redirect("/users/login");
       }
     });
   } /* end of reorder function */
 };
+

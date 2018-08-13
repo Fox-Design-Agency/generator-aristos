@@ -1,5 +1,6 @@
 // Page model queries
 const FindPageWithParam = require("../../../important/admin/adminModels/queries/page/FindPageWithParam");
+/* site state stuffs */
 
 module.exports = {
   home(req, res, next) {
@@ -33,6 +34,7 @@ module.exports = {
         res.redirect("/");
       } else {
         if (typeof page[0].template !== "undefined") {
+
           res.render(`${page[0].template}`, {
             title: page[0].title,
             content: page[0].content,
@@ -41,6 +43,7 @@ module.exports = {
             author: page[0].author
           });
         } else {
+
           res.render("index"),
             {
               title: page[0].title,

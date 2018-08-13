@@ -74,7 +74,7 @@ module.exports = {
           errors.push({ text: "Title must have a value." });
         }
         let title = req.body.title;
-        let slug = title.replace(/\s+/g, "-").toLowerCase();
+        let slug = title.replace(/s+/g, "-").toLowerCase();
         let author = req.body.author;
         let description = req.body.description;
         let keywords = req.body.keywords;
@@ -161,7 +161,7 @@ module.exports = {
           errors.push({ text: "Title must have a value." });
         }
         let title = req.body.title;
-        let slug = title.replace(/\s+/g, "-").toLowerCase();
+        let slug = title.replace(/s+/g, "-").toLowerCase();
         let id = req.params.id;
         let author = req.body.author;
         let description = req.body.description;
@@ -247,3 +247,5 @@ module.exports = {
     });
   } //end of reorder function
 };
+
+

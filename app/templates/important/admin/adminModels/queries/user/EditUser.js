@@ -3,10 +3,10 @@ const User = require("../../user");
 const addErrorEvent = require("../../../../AristosStuff/AristosLogger/AristosLogger").addError;
 
 /**
- * Edits a single page in the Page collection
- * @param {string} _id - The ID of the page to edit.
- * @param {object} artistProps - An object with title, slug, content, parent, 100, description, keywords, author
- * @return {promise} A promise that resolves when the page is edited
+ * Edits a single user in the USer collection
+ * @param {string} _id - The ID of the user to edit.
+ * @param {object} artistProps - An object with ??
+ * @return {promise} A promise that resolves when the user is edited
  */
 module.exports = (_id, userProps) => {
   return User.findByIdAndUpdate({ _id }, userProps).catch(err => {

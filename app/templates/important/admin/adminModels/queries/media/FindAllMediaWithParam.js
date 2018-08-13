@@ -4,12 +4,12 @@ const addErrorEvent = require("../../../../AristosStuff/AristosLogger/AristosLog
   .addError;
 
 /**
- * Finds a single page in the Page collection.
- * @param {string} _id - The ID of the record to find.
- * @return {promise} A promise that resolves with the page that matches the id
+ * Finds all the media match params in the Media collection.
+ * @param {object} stuffs - The object of the stuff to find.
+ * @return {promise} A promise that resolves with the media that matches the stuff param
  */
 module.exports = stuffs => {
   return Media.find(stuffs).catch(err => {
-    addErrorEvent(err, "media query error");
+    addErrorEvent(err, "image media query error");
   });
 };

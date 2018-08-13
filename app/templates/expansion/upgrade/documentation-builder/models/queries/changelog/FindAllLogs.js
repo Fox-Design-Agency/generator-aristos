@@ -1,12 +1,15 @@
 const Changelog = require("../../changelog");
 /* Aristos Logger Path */
-// const errorAddEvent = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger").addError;
-
+const errorAddEvent = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger")
+  .addError;
 /**
- * Finds a single page in the Page collection.
- * @param {string} _id - The ID of the record to find.
- * @return {promise} A promise that resolves with the page that matches the id
+ * Finds all the changelogs in the Changelog collection.
+ * @return {promise} A promise that resolves with all the changwelogs
  */
 module.exports = () => {
-  return Changelog.find({});
+  return Changelog.find({}).catch(err => {
+    errorAddEvent(err, "changelog query error");
+  });
 };
+
+

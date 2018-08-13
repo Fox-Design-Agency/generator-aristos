@@ -1,12 +1,17 @@
 const Changelog = require("../../changelog");
 /* Aristos Logger Path */
-const errorAddEvent = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger").addError;
+const errorAddEvent = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger")
+  .addError;
 
 /**
- * Deletes a single page from the Page collection
- * @param {string} _id - The ID of the page to delete.
+ * Deletes a single changelog from the Changelog collection
+ * @param {objectID} _id - The ID of the changelog to delete.
  * @return {promise} A promise that resolves when the record is deleted
  */
 module.exports = _id => {
-    Changelog.findByIdAndRemove(_id).catch(err => errorAddEvent(err, "changelof query error"));
+  return Changelog.findByIdAndRemove(_id).catch(err => {
+    errorAddEvent(err, "changelog query error");
+  });
 };
+
+

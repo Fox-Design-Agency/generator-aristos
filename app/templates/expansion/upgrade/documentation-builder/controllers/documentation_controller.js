@@ -24,12 +24,14 @@ module.exports = {
   index(req, res, next) {
     const sorted = FindAllSortedDocumentation();
     const cats = FindAllDocumentationCategories();
-    Promise.all([sorted, cats]).then(result => {
+    const theCount = CountDocumentation();
+    Promise.all([sorted, cats, theCount]).then(result => {
       res.render(
         "../../../expansion/upgrade/documentation-builder/views/documentation",
         {
           projects: result[0],
-          categories: result[1]
+          categories: result[1],
+          count: result[2]
         }
       );
     });
@@ -39,12 +41,14 @@ module.exports = {
     const sorted = FindAllSortedDocumentationWithParams({
       category: req.params.category
     });
-    Promise.all([sorted, cats]).then(result => {
+    const theCount = CountDocumentation();
+    Promise.all([sorted, cats, theCount]).then(result => {
       res.render(
         "../../../expansion/upgrade/documentation-builder/views/documentation",
         {
           projects: result[0],
-          categories: result[1]
+          categories: result[1],
+          count: result[2]
         }
       );
     });
@@ -88,7 +92,7 @@ module.exports = {
         }
 
         let title = req.body.title;
-        let slug = title.replace(/\s+/g, "-").toLowerCase();
+        let slug = title.replace(/s+/g, "-").toLowerCase();
         let content = req.body.content;
         let category = req.body.category;
         let keywords = req.body.keywords;
@@ -121,7 +125,7 @@ module.exports = {
             category: category,
             description: description,
             keywords: keywords,
-            sorting: 100,
+            sorting: 0,
             author: author
           };
           CreateDocumentation(ProjectProps);
@@ -174,7 +178,7 @@ module.exports = {
         }
 
         let title = req.body.title;
-        let slug = title.replace(/\s+/g, "-").toLowerCase();
+        let slug = title.replace(/s+/g, "-").toLowerCase();
         let content = req.body.content;
         let category = req.body.category;
         let id = req.params.id;

@@ -25,12 +25,14 @@ module.exports = {
   index(req, res, next) {
     const cats = FindAllDocumentationCategories();
     const sorted = FindAllRevSortedLogs();
-    Promise.all([sorted, cats]).then(result => {
+    const theCount = CountLogs();
+    Promise.all([sorted, cats, theCount]).then(result => {
       res.render(
         "../../../expansion/upgrade/documentation-builder/views/changelog",
         {
           projects: result[0],
-          categories: result[1]
+          categories: result[1],
+          count: result[2]
         }
       );
     });
@@ -38,13 +40,16 @@ module.exports = {
   catIndex(req, res, next) {
     const cats = FindAllDocumentationCategories();
     const sorted = FindSortedLogsWithParam({ category: req.params.category });
-    Promise.all([sorted, cats]).then(result => {
+    const theCount = CountLogs();
+    Promise.all([sorted, cats, theCount]).then(result => {
       res.render(
-      "../../../expansion/upgrade/documentation-builder/views/changelog",
+        "../../../expansion/upgrade/documentation-builder/views/changelog",
         {
           projects: result[0],
-          categories: result[1]
-        });
+          categories: result[1],
+          count: result[2]
+        }
+      );
     });
   } /* end of cat index function */,
   addIndex(req, res, next) {
@@ -86,7 +91,7 @@ module.exports = {
         }
 
         let title = req.body.title;
-        let slug = title.replace(/\s+/g, "-").toLowerCase();
+        let slug = title.replace(/s+/g, "-").toLowerCase();
         let content = req.body.content;
         let category = req.body.category;
         let keywords = req.body.keywords;
@@ -143,7 +148,7 @@ module.exports = {
                 category: category,
                 description: description,
                 keywords: keywords,
-                sorting: 1,
+                sorting: 0,
                 author: author
               };
               CreateLogs(ProjectProps);
@@ -195,7 +200,7 @@ module.exports = {
         }
 
         let title = req.body.title;
-        let slug = title.replace(/\s+/g, "-").toLowerCase();
+        let slug = title.replace(/s+/g, "-").toLowerCase();
         let content = req.body.content;
         let category = req.body.category;
         let id = req.params.id;
@@ -259,3 +264,4 @@ module.exports = {
     });
   }
 };
+

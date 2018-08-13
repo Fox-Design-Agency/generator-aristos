@@ -1,15 +1,17 @@
 const ContactMessage = require("../contactMessage");
 /* Aristos Logger Path */
-const errorAddEvent = require("../../../../../important/AristosStuff/AristosLogger/AristosLogger").addError;
+const errorAddEvent = require("../../../../../important/AristosStuff/AristosLogger/AristosLogger")
+  .addError;
 
 /**
- * Edits a single page in the Page collection
- * @param {string} _id - The ID of the page to edit.
- * @param {object} artistProps - An object with title, slug, content, parent, 100, description, keywords, author
- * @return {promise} A promise that resolves when the page is edited
+ * Edits a single contact message in the Contact Message collection
+ * @param {string} _id - The ID of the message to edit.
+ * @param {object} messageProps - An object with ??
+ * @return {promise} A promise that resolves when the contact message is edited
  */
 module.exports = (_id, messageProps) => {
   return ContactMessage.findByIdAndUpdate({ _id }, messageProps).catch(err => {
-    errorAddEvent(err, "contact message query error")
+    errorAddEvent(err, "contact message query error");
   });
 };
+

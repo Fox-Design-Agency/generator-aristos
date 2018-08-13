@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const moment = require("moment");
 const Schema = mongoose.Schema;
 /* Page Schema */
 const ChangelogSchema = new Schema({
@@ -16,6 +17,10 @@ const ChangelogSchema = new Schema({
     type: String,
     required: true
   },
+  published: {
+    type: String,
+    default: moment().format("dddd, MMM Do YYYY")
+  },
   sorting: {
     type: Number
   },
@@ -31,3 +36,4 @@ const ChangelogSchema = new Schema({
 });
 
 module.exports = mongoose.model("Changelog", ChangelogSchema);
+

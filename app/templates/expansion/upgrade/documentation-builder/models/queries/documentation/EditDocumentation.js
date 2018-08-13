@@ -1,15 +1,17 @@
 const Documentation = require("../../documentation");
 /* Aristos Logger Path */
-const errorAddEvent = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger").addError;
+const errorAddEvent = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger")
+  .addError;
 
 /**
- * Edits a single page in the Page collection
- * @param {string} _id - The ID of the page to edit.
- * @param {object} artistProps - An object with title, slug, content, parent, 100, description, keywords, author
- * @return {promise} A promise that resolves when the page is edited
+ * Edits a single documentation in the Documentation collection
+ * @param {objectID} _id - The ID of the documentation to edit.
+ * @param {object} documentationProps - Object containing title, slug, content, description, keywords, author, image
+ * @return {promise} A promise that resolves when the documentation is edited
  */
-module.exports = (_id, projectProps) => {
-  return Documentation.findByIdAndUpdate({ _id }, projectProps).catch(err => {
-    errorAddEvent(err, "documentation query error")
+module.exports = (_id, documentationProps) => {
+  return Documentation.findByIdAndUpdate({ _id }, documentationProps).catch(err => {
+    errorAddEvent(err, "documentation query error");
   });
 };
+

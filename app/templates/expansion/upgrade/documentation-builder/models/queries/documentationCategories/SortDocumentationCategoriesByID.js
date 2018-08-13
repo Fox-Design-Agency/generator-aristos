@@ -1,14 +1,19 @@
 const DocumentationCategories = require("../../documentationCategory");
 /* Aristos Logger Path */
-// const errorAddEvent = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger").addError;
+const errorAddEvent = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger")
+  .addError;
 /**
- * Sorts pages by ids.
- * @param {string} _id - The ID of the record to find.
- * @return {promise} A promise that resolves with the page that matches the id
+ * Sorts documentation categories by ids.
+ * @param {string} ids - The ids of the record to sort by.
+ * @return {promise} A promise that resolves with the sorted documentation categories
  */
 module.exports = ids => {
   return sortDocumentationCats(ids, function() {
-    DocumentationCategories.find({}).sort({ sorting: 1 });
+    DocumentationCategories.find({})
+      .sort({ sorting: 1 })
+      .catch(err => {
+        errorAddEvent(err, "documentation category query error");
+      });
   });
 }; //* end of exports */
 /* Sort pages function */
@@ -33,3 +38,4 @@ function sortDocumentationCats(ids, cb) {
     })(count);
   }
 } /* end of sort pages function */
+

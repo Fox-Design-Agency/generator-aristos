@@ -1,12 +1,16 @@
 const Documentation = require("../../documentation");
 /* Aristos Logger Path */
-const errorAddEvent = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger").addError;
+const errorAddEvent = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger")
+  .addError;
 /**
- * Finds a single page in the Page collection.
- * @param {object} pageProps - Object containing title, slug, content, parent, 100, description, keywords, author
- * @return {promise} A promise that resolves with the Page that was created
+ * Creates a single documentation in the Documentation collection.
+ * @param {object} documentationProps - Object containing title, slug, content, description, keywords, author, image
+ * @return {promise} A promise that resolves with the documentation that was created
  */
-module.exports = projectProps => {
-  const documentation = new Documentation(projectProps);
-  return documentation.save().catch(err => errorAddEvent(err, "documentation query error"));
+module.exports = documentationProps => {
+  const documentation = new Documentation(documentationProps);
+  return documentation.save().catch(err => {
+    errorAddEvent(err, "documentation query error");
+  });
 };
+

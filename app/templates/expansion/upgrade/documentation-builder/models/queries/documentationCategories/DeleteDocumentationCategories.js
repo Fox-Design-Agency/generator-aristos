@@ -3,10 +3,12 @@ const DocumentationCategories = require("../../documentationCategory");
 const errorAddEvent = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger").addError;
 
 /**
- * Deletes a single page from the Page collection
- * @param {string} _id - The ID of the page to delete.
+ * Deletes a single documentation category from the Documentation Category collection
+ * @param {objectID} _id - The ID of the documentation category to delete.
  * @return {promise} A promise that resolves when the record is deleted
  */
 module.exports = _id => {
-    DocumentationCategories.findByIdAndRemove(_id).catch(err =>  errorAddEvent(err, "documentation category error"));
+    return DocumentationCategories.findByIdAndRemove(_id).catch(err => {
+        errorAddEvent(err, "documentation category query error");
+      });
 };

@@ -1,9 +1,13 @@
 <%- include("../../../../../important/admin/views/_layouts/adminheader") %>
     <h2 class="admin-page__main-title">edit a documentation category</h2>
     <% include ../../../../../important/admin/views/_layouts/messages/errors %>
-    <button class="admin-button admin-button--main">
-        <a href="/admin/documentation-builder-categories">Back to Categories</a>
+    <button class="admin-button admin-button--add-something">
+        <a  href="/admin/documentation-builder-categories">
+            <i class="fa fa-hand-point-left"></i>
+        </a>
     </button>
+    <br>
+    <br>
 
     <form method="post" action="/admin/documentation-builder-categories/edit-documentation-category/<%= id %>" class="admin-form">
         <div class="admin-form__form-options--bottom-group">
@@ -24,12 +28,12 @@
                 <div class="admin-form__group">
                     <label for="">Meta Description</label>
                     <textarea class="admin-form--disabled-resize" rows="4" name="description" placeholder="Place a brief description of this product category. Max of 320 characters including spaces."
-                        maxlength="320"></textarea>
+                        maxlength="320"><%= description %></textarea>
                 </div>
                 <div class="admin-form__group">
                     <label for="">Meta Keywords</label>
                     <textarea class="admin-form--disabled-resize" rows="4" name="keywords" placeholder="Place your keywords seperated by a comma. Max of 300 characters. EX. neat product, neater category, neatest person"
-                        maxlength="300"></textarea>
+                        maxlength="300"><%= keywords %></textarea>
                 </div>
 
             </div>

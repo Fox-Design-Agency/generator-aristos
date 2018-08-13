@@ -19,10 +19,10 @@ module.exports = app => {
   app.use(
     express.static(path.join(__dirname, "../../../content/public/images/"))
   );
-    /* testing grapesjs */
-    app.use(
-      express.static(path.join(__dirname, "../../../important/AristosStuff/"))
-    );
+  /* testing grapesjs */
+  app.use(
+    express.static(path.join(__dirname, "../../../important/AristosStuff/"))
+  );
   /* need to set to dist for production */
   /* Express fileUpload middleware */
   app.use(fileUpload());
@@ -30,6 +30,9 @@ module.exports = app => {
   /* Passport Config */
   require("../passport/passport")(passport);
   /* Passport Middleware */
+  /* Start of express sessions */
+require("./session/expressSession")(app);
+/* end of express sessions */
   app.use(passport.initialize());
   app.use(passport.session());
   /* end Passport Config */
@@ -45,4 +48,6 @@ module.exports = app => {
     res.locals.errors = [];
     next();
   });
+  require("./siteStats/siteStats")(app);
+  require("./siteStats/frontEndStats")(app);
 };

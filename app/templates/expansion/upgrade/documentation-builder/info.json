@@ -6,11 +6,11 @@
   "dropdownCategories": [
     {
       "name": "add documentation",
-      "link": "/admin/blogs/add-blog"
+      "link": "/admin/documentation-builder/add-documentation"
     },
     {
       "name": "add category",
-      "link": "/admin/blog-categories/add-blog-category"
+      "link": "/admin/documentation-builder-categories/add-documentation-category"
     },
     {
       "name": "add changelog",

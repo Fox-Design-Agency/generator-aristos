@@ -1,12 +1,18 @@
 const Changelog = require("../../changelog");
 /* Aristos Logger Path */
-// const errorAddEvent = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger").addError;
-
+const errorAddEvent = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger")
+  .addError;
 /**
- * Finds a single page in the Page collection.
+ * Finds all the changelogs sorted in reverse order form the Changelog collection.
  * @param {string} _id - The ID of the record to find.
  * @return {promise} A promise that resolves with the page that matches the id
  */
 module.exports = () => {
-  return Changelog.find({}).sort({ sorting: -1 });
+  return Changelog.find({})
+    .sort({ sorting: -1 })
+    .catch(err => {
+      errorAddEvent(err, "changelog query error");
+    });
 };
+
+

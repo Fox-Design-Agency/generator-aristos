@@ -8,5 +8,7 @@ const addErrorEvent = require("../../../../AristosStuff/AristosLogger/AristosLog
  * @return {promise} A promise that resolves when the record is deleted
  */
 module.exports = _id => {
-  return Page.findByIdAndRemove(_id).catch(err => addErrorEvent(err, "page query error"));
+  return Page.findByIdAndRemove(_id).catch(err => {
+    addErrorEvent(err, "page query error");
+  });
 };

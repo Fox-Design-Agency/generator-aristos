@@ -1,13 +1,19 @@
 const DocumentationCategories = require("../../documentationCategory");
 /* Aristos Logger Path */
-const errorAddEvent = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger").addError;
+const errorAddEvent = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger")
+  .addError;
 /**
- * Finds a single page in the Page collection.
- * @param {object} pageProps - Object containing <change this>
- * @return {promise} A promise that resolves with the Page that was created
+ * counts the documentation categories in the Documentation Category collection.
+ * @return {promise} A promise that resolves with the count
  */
 module.exports = () => {
-  return DocumentationCategories.estimatedDocumentCount({}).then(c => {
-      return c
+  return DocumentationCategories.estimatedDocumentCount({})
+    .then(c => {
+      return c;
     })
+    .catch(err => {
+      errorAddEvent(err, "documentation category query error");
+    });
 };
+
+
