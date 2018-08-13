@@ -1,5 +1,4 @@
 # Aristos Generator
-- **Finalizing the update stream**
 - **project will be mostly production ready after rewrite**
 
 This is the Node version for the Aristos Content Managment System (CMS).
