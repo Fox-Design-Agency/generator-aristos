@@ -163,12 +163,6 @@ module.exports = class extends Generator {
         "expansion/upgrade/contact"
       );
     }
-    if (this.options.data) {
-      this.fs.copy(
-        this.templatePath("expansion/upgrade/data-science"),
-        "expansion/upgrade/data-science"
-      );
-    }
     if (this.options.documentation) {
       this.fs.copy(
         this.templatePath("expansion/upgrade/documentation-builder"),
@@ -206,6 +200,10 @@ module.exports = class extends Generator {
     this.fs.copy(
       this.templatePath("expansion/upgrade/index.js"),
       "expansion/upgrade/index.js"
+    );
+    this.fs.copy(
+      this.templatePath("expansion/upgrade/dashboard.js"),
+      "expansion/upgrade/dashboard.js"
     );
     this.fs.copy(
       this.templatePath("expansion/plugins/index.js"),
