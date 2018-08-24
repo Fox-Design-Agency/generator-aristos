@@ -1,11 +1,10 @@
-// Page model queries
+/* Page model queries */
 const FindPageWithParam = require("../../../important/admin/adminModels/queries/page/FindPageWithParam");
 /* site state stuffs */
 
 module.exports = {
   home(req, res, next) {
-    const HomePage = FindPageWithParam({ slug: "home" });
-    HomePage.then(page => {
+    FindPageWithParam({ slug: "home" }).then(page => {
       if (page.length < 1) {
         res.render("../views/index", {
           title: "",
@@ -15,7 +14,7 @@ module.exports = {
           author: ""
         });
       } else {
-        res.render(`${page[0].template}`, {
+        res.render(`${page[0].template.path}`, {
           title: page[0].title,
           content: page[0].content,
           keywords: page[0].keywords,
@@ -24,18 +23,16 @@ module.exports = {
         });
       }
     });
-  }, // end of home function
+  } /*end of home function */,
 
   anyPage(req, res, next) {
     let slug = req.params.slug;
-    const AnyPage = FindPageWithParam({ slug: slug });
-    AnyPage.then(page => {
+    FindPageWithParam({ slug: slug }).then(page => {
       if (page.length < 1) {
         res.redirect("/");
       } else {
         if (typeof page[0].template !== "undefined") {
-
-          res.render(`${page[0].template}`, {
+          res.render(`${page[0].template.path}`, {
             title: page[0].title,
             content: page[0].content,
             keywords: page[0].keywords,
@@ -43,7 +40,6 @@ module.exports = {
             author: page[0].author
           });
         } else {
-
           res.render("index"),
             {
               title: page[0].title,
@@ -55,5 +51,5 @@ module.exports = {
         }
       }
     });
-  } // end of any page function
+  } /* end of any page function */
 };

@@ -40,7 +40,7 @@ router.get("/make-update/:update", (req, res, next) => {
     default:
       break;
   }
-  res.redirect("/admin/updater")
+  res.redirect("back")
 });
 
 /* Exports */
