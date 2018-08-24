@@ -16,4 +16,3 @@ module.exports = () => {
       errorAddEvent(err, "project query error");
     });
 };
-

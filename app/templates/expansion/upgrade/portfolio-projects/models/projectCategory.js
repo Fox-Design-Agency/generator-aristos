@@ -27,4 +27,3 @@ const PortfolioCategorySchema = new Schema({
 
 /* end of project category funcitons */
 module.exports = mongoose.model("PortfolioCategory", PortfolioCategorySchema);
-
