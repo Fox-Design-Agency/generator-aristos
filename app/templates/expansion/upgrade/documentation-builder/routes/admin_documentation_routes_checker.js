@@ -3,19 +3,18 @@ const pluginChecker = require("../../../plugins");
 module.exports = {
   async theFunction() {
     await pluginChecker.then(plugin => {
+      fs.ensureFile(
+        "./expansion/upgrade/documentation-builder/routes/documentationRoutes.json",
+        err => {
+          fs.writeJson(
+            "./expansion/upgrade/documentation-builder/routes/documentationRoutes.json",
+            {
+              route: "./routes/documentation.js"
+            }
+          );
+        }
+      );
       plugin.forEach(theThings => {
-        fs.ensureFile(
-          "./expansion/upgrade/documentation-builder/routes/documentationRoutes.json",
-          err => {
-            fs.writeJson(
-              "./expansion/upgrade/documentation-builder/routes/documentationRoutes.json",
-              {
-                route: "./routes/documentation.js"
-              }
-            );
-          }
-        );
-
         if (theThings.switch === "documentationSwitch") {
           if (theThings.switchRoutes === "true") {
             fs.writeJson(
