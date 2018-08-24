@@ -15,7 +15,7 @@
             </button>
     <% categories.forEach(function(category){ %>
         <button  class="admin-button admin-button--main">
-            <a href="/admin/changelog-builder/sorted/<%= category.slug %>">
+            <a href="/admin/changelog-builder/sorted/<%= category._id %>">
                 <%= category.title %>
             </a>
         </button>
@@ -35,7 +35,7 @@
                 category:
             </h4>
                     <h5>
-                        <%= project.category %>
+                        <%= project.category.title %>
                     </h5>
                     <h4>
                 published:

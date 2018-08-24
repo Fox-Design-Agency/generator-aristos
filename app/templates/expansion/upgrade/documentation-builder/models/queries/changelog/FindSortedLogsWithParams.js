@@ -10,9 +10,9 @@ const errorAddEvent = require("../../../../../../important/AristosStuff/AristosL
 module.exports = stuff => {
   return Changelog.find(stuff)
     .sort({ sorting: 1 })
+    .populate("category")
+    .populate("author")
     .catch(err => {
       errorAddEvent(err, "changelog query error");
     });
 };
-
-

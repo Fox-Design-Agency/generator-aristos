@@ -7,8 +7,10 @@ const errorAddEvent = require("../../../../../../important/AristosStuff/AristosL
  * @return {promise} A promise that resolves with all the documentation
  */
 module.exports = () => {
-  return Documentation.find({}).catch(err => {
-    errorAddEvent(err, "documentation query error");
-  });
+  return Documentation.find({})
+    .populate("category")
+    .populate("author")
+    .catch(err => {
+      errorAddEvent(err, "documentation query error");
+    });
 };
-

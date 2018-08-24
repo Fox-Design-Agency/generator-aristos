@@ -12,5 +12,7 @@ router
   .get(isAdmin, contactController.index)
   .post(contactController.create);
 
+  router.delete("/delete-message/:id", contactController.delete)
+
 /* Exports */
 module.exports = router;

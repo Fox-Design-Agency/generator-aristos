@@ -3,9 +3,8 @@
   text-align: center;
   border-spacing: 0;
 
-
-  &__image-preview{
-     width: 100px;
+  &__image-preview {
+    width: 100px;
     height: 100px;
   }
 
@@ -56,7 +55,7 @@
       display: flex;
       cursor: pointer;
       flex: 1;
-     justify-content: center;
+      justify-content: center;
     }
 
     &:hover {
@@ -79,4 +78,3 @@
     }
   }
 }
-

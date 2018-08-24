@@ -72,8 +72,7 @@ module.exports = {
           price: price,
           media: result[1],
           description: description,
-          keywords: keywords,
-          author: author
+          keywords: keywords
         }
       );
     });
@@ -92,12 +91,12 @@ module.exports = {
         }
 
         let title = req.body.title;
-        let slug = title.replace(/s+/g, "-").toLowerCase();
+        let slug = title.replace(/\s+/g, "-").toLowerCase();
         let content = req.body.content;
         let category = req.body.category;
         let keywords = req.body.keywords;
         let description = req.body.description;
-        let author = req.body.author;
+        let author = req.session.passport.user;
 
         if (errors.length > 0) {
           const AllDocumentationCategories = FindAllDocumentationCategories();
@@ -112,8 +111,7 @@ module.exports = {
                 categories: result[0],
                 media: result[1],
                 description: description,
-                keywords: keywords,
-                author: author
+                keywords: keywords
               }
             );
           });
@@ -154,10 +152,9 @@ module.exports = {
           title: result[1].title,
           content: result[1].content,
           categories: result[0],
-          selectedCat: result[1].category,
+          selectedCat: result[1].category.slug,
           id: result[1]._id,
           media: result[2],
-          author: result[1].author,
           description: result[1].description,
           keywords: result[1].keywords
         }
@@ -183,7 +180,6 @@ module.exports = {
         let category = req.body.category;
         let id = req.params.id;
         let description = req.body.description;
-        let author = req.body.author;
         let keywords = req.body.keywords;
 
         if (errors.length > 0) {
@@ -196,8 +192,7 @@ module.exports = {
             content: content,
             category: category,
             description: description,
-            keywords: keywords,
-            author: author
+            keywords: keywords
           };
           EditDocumentation(id, ProjectParams);
 

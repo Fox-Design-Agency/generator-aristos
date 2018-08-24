@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const Schema = mongoose.Schema;
 /* Blog Category Schema */
 const BlogCategorySchema = new mongoose.Schema({
   title: {
@@ -7,7 +7,8 @@ const BlogCategorySchema = new mongoose.Schema({
     required: true
   },
   author:{
-    type: String
+    type: Schema.Types.ObjectId,
+    ref: "User"
   },
   description:{
     type: String

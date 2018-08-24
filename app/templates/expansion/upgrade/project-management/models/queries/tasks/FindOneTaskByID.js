@@ -8,7 +8,9 @@ const errorAddEvent = require("../../../../../../important/AristosStuff/AristosL
  * @return {promise} A promise that resolves with the task that matches the id
  */
 module.exports = _id => {
-  return Task.findById(_id).catch(err => {
-    errorAddEvent(err, "tasks query error");
-  });
+  return Task.findById(_id)
+    .populate("assigned")
+    .catch(err => {
+      errorAddEvent(err, "tasks query error");
+    });
 };

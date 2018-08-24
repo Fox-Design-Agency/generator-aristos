@@ -17,7 +17,7 @@
         <% categories.forEach(function(category){ %>
             
                 <button  class="admin-button admin-button--main">
-                    <a href="/admin/products/categories/<%= category.slug %>">
+                    <a href="/admin/products/categories/<%= category._id %>">
                         <%= category.title %>
                     </a>
                 </button>
@@ -44,7 +44,7 @@
                             category:
                         </h4>
                                 <h5>
-                                    <%= product.category %>
+                                    <%= product.category.title %>
                                 </h5>
                                 <h4>
                             image:

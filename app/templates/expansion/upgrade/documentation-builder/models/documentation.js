@@ -7,7 +7,8 @@ const DocumentationSchema = new Schema({
     required: true
   },
   category: {
-    type: String
+    type: Schema.Types.ObjectId,
+    ref: "DocumentationCategory"
   },
   slug: {
     type: String
@@ -26,7 +27,8 @@ const DocumentationSchema = new Schema({
     type: String
   },
   author: {
-    type: String
+    type: Schema.Types.ObjectId,
+    ref: "User"
   }
 });
 

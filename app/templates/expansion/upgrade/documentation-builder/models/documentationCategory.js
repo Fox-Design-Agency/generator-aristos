@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 /* project Category Schema */
 const DocumentationCategorySchema = new mongoose.Schema({
   title: {
@@ -15,7 +16,8 @@ const DocumentationCategorySchema = new mongoose.Schema({
     type: String
   },
   author: {
-    type: String
+    type: Schema.Types.ObjectId,
+    ref: "User"
   },
   sorting: {
     type: Number

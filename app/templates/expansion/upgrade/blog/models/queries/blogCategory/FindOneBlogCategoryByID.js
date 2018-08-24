@@ -5,12 +5,10 @@ const errorAddEvent = require("../../../../../../important/AristosStuff/AristosL
 /**
  * Finds a single blog category in the Blog Category collection.
  * @param {objectID} _id - The ID of the record to find.
- * @return {promise} A promise that resolves with the page that matches the id
+ * @return {promise} A promise that resolves with the blog category that matches the id
  */
 module.exports = _id => {
   return BlogCategory.findById(_id).catch(err => {
     errorAddEvent(err, "blog category query error");
   });
 };
-
-

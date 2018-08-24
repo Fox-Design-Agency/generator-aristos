@@ -68,7 +68,7 @@ module.exports = {
         }
 
         let title = req.body.title;
-        let slug = title.replace(/s+/g, "-").toLowerCase();
+        let slug = title.replace(/\s+/g, "-").toLowerCase();
         let description = req.body.description;
         let author = req.body.author;
         let keywords = req.body.keywords;

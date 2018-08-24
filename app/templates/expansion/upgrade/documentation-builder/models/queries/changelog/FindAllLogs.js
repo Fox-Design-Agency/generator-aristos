@@ -7,9 +7,10 @@ const errorAddEvent = require("../../../../../../important/AristosStuff/AristosL
  * @return {promise} A promise that resolves with all the changwelogs
  */
 module.exports = () => {
-  return Changelog.find({}).catch(err => {
-    errorAddEvent(err, "changelog query error");
-  });
+  return Changelog.find({})
+    .populate("category")
+    .populate("author")
+    .catch(err => {
+      errorAddEvent(err, "changelog query error");
+    });
 };
-
-

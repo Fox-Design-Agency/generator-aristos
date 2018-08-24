@@ -8,9 +8,10 @@ const errorAddEvent = require("../../../../../../important/AristosStuff/AristosL
  * @return {promise} A promise that resolves with the changelog thta matches the stuff param
  */
 module.exports = stuff => {
-  return Changelog.find(stuff).catch(err => {
-    errorAddEvent(err, "changelog query error");
-  });
+  return Changelog.find(stuff)
+    .populate("category")
+    .populate("author")
+    .catch(err => {
+      errorAddEvent(err, "changelog query error");
+    });
 };
-
-

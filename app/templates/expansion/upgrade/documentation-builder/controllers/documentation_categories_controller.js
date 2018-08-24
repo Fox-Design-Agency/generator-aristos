@@ -15,6 +15,11 @@ const FindDocumentationCategoryWithParams = require("../models/queries/documenta
 const FindDocumentationCategoryByID = require("../models/queries/documentationCategories/FindOneDocumentationCategoriesByID");
 const FindAllSortedDocumentationCategories = require("../models/queries/documentationCategories/FindAllSortedDocumentationsCategories");
 const SortDocumentationCategories = require("../models/queries/documentationCategories/SortDocumentationCategoriesByID");
+/* documentation model query */
+const DeleteDocumentationWithCategory = require("../models/queries/documentation/DeleteDocumentationWithCategory");
+/* changelog model query */
+const DeleteChangelogsWithCategory = require("../models/queries/changelog/DeleteLogWithCategory");
+
 /* User Model Queries */
 const FindOneUserByID = require("../../../../important/admin/adminModels/queries/user/FindOneUserWithID");
 module.exports = {
@@ -64,8 +69,8 @@ module.exports = {
         }
 
         let title = req.body.title;
-        let slug = title.replace(/s+/g, "-").toLowerCase();
-        let author = req.body.author;
+        let slug = title.replace(/\s+/g, "-").toLowerCase();
+        let author = req.session.passport.user;
         let description = req.body.description;
         let keywords = req.body.keywords;
 
@@ -76,7 +81,7 @@ module.exports = {
               {
                 errors: errors,
                 title: title,
-                author: author,
+                slug: slug,
                 description: description,
                 keywords: keywords,
                 media: media
@@ -84,7 +89,9 @@ module.exports = {
             );
           });
         } else {
-          const CheckIfExists = FindDocumentationCategoryWithParams({ slug: slug });
+          const CheckIfExists = FindDocumentationCategoryWithParams({
+            slug: slug
+          });
           CheckIfExists.then(category => {
             if (category.length > 0) {
               errors.push({ text: "Category title exists, choose another." });
@@ -93,7 +100,7 @@ module.exports = {
                   "../../../expansion/upgrade/portfolio-projects/views/categories/add_project_category",
                   {
                     title: title,
-                    author: author,
+                    slug: slug,
                     description: description,
                     keywords: keywords,
                     media: media
@@ -104,7 +111,6 @@ module.exports = {
               const CategoryProps = {
                 title: title,
                 slug: slug,
-                author: author,
                 description: description,
                 keywords: keywords,
                 sorting: 0
@@ -130,7 +136,6 @@ module.exports = {
         {
           title: result[0].title,
           id: result[0]._id,
-          author: result[0].author,
           description: result[0].description,
           keywords: result[0].keywords,
           media: result[1]
@@ -147,11 +152,9 @@ module.exports = {
         if (!req.body.title) {
           errors.push({ text: "Title must have a value." });
         }
-
         let title = req.body.title;
-        let slug = title.replace(/s+/g, "-").toLowerCase();
+        let slug = title.replace(/\s+/g, "-").toLowerCase();
         let id = req.params.id;
-        let author = req.body.author;
         let description = req.body.description;
         let keywords = req.body.keywords;
         let imagepath = req.body.imagepath;
@@ -163,7 +166,6 @@ module.exports = {
               errors: errors,
               title: title,
               id: id,
-              author: author,
               description: description,
               keywords: keywords
             }
@@ -182,7 +184,6 @@ module.exports = {
                   errors: errors,
                   title: title,
                   id: id,
-                  author: author,
                   description: description,
                   keywords: keywords
                 }
@@ -191,7 +192,6 @@ module.exports = {
               const categoryProps = {
                 title: title,
                 slug: slug,
-                author: author,
                 description: description,
                 keywords: keywords,
                 imagepath: imagepath
@@ -208,9 +208,14 @@ module.exports = {
     });
   } /* end of edit function */,
   delete(req, res, next) {
-    DeleteDocumentationCategory(req.params.id);
-    req.flash("success_msg", "Documentation Category Deleted!");
-    res.redirect("/admin/documentation-builder-categories");
+    Promise.all([
+      DeleteDocumentationCategory(req.params.id),
+      DeleteDocumentationWithCategory(req.params.id),
+      DeleteChangelogsWithCategory(req.params.id)
+    ]).then(result => {
+      req.flash("success_msg", "Documentation Category Deleted!");
+      res.redirect("/admin/documentation-builder-categories");
+    });
   } /* end of delete function */,
 
   reorder(req, res, next) {
@@ -219,11 +224,9 @@ module.exports = {
       if (user.admin === 1) {
         let ids = req.body["id[]"];
         SortDocumentationCategories(ids);
-       
       } else {
         res.redirect("/users/login");
       }
     });
   } /* end of reorder function */
 };
-

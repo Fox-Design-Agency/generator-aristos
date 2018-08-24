@@ -9,8 +9,9 @@ const errorAddEvent = require("../../../../../../important/AristosStuff/AristosL
 module.exports = () => {
   return Documentation.find({})
     .sort({ sorting: 1 })
+    .populate("category")
+    .populate("author")
     .catch(err => {
       errorAddEvent(err, "documentation query error");
     });
 };
-
