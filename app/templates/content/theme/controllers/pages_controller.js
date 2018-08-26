@@ -31,7 +31,7 @@ module.exports = {
       if (page.length < 1) {
         res.redirect("/");
       } else {
-        if (typeof page[0].template !== "undefined") {
+        if (typeof page[0].template.path !== "undefined") {
           res.render(`${page[0].template.path}`, {
             title: page[0].title,
             content: page[0].content,

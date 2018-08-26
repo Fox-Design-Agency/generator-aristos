@@ -12,4 +12,3 @@ module.exports = _id => {
     errorAddEvent(err, "coupon query error");
   });
 };
-

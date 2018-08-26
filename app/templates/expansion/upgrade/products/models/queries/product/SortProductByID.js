@@ -45,4 +45,3 @@ function sortProducts(ids, cb) {
     })(count);
   }
 }
-

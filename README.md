@@ -1,5 +1,5 @@
-# Aristos Generator
-- **project will be mostly production ready after rewrite**
+# Aristos CMS - Node Version
+- **Should be production ready within a few updates**
 
 This is the Node version for the Aristos Content Managment System (CMS).
 
@@ -31,7 +31,6 @@ If you would like to also install an upgrade/plugin package, add the appropiate 
 ```
 --blog
 --contact
---data
 --documentation
 --newsletter
 --portfolio
@@ -48,16 +47,15 @@ Each option flag needs a space after it, otherwise two options will be seen by t
 
 The current state of the upgrade/plugin packages should also be noted:
 #### Upgrades
-    - blog: comments are not a thing right now, but should be
+    - blog: very close to be fully working
     - contact: can recieve contact but not much else
-    - data: not a thing
     - documentation: Mostly works
     - newsletter: not a thing
     - portfolio: Mostly works, editing images doesnt always work on first try
-    - products: Mostly works
-    - management: Needs complete rewrite
+    - products: Mostly works, orders and coupons still being worked on
+    - management: Mostly working
 #### Plugins
-    - printful: option flag not set, needs complete rewrite after product upgrade becomes finalized
+    - printful: option flag not set, mostly works
 
 Soon, [Aristos Builder](https://aristosbuilder.com/) will be a great resource to help you get started. It's just pretty lame right now.
 

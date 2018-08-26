@@ -12,4 +12,3 @@ module.exports = blogID => {
     errorAddEvent(err, "blog comment query error");
   });
 };
-

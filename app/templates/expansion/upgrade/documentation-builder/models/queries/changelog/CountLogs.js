@@ -3,8 +3,8 @@ const Changelog = require("../../changelog");
 const errorAddEvent = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger")
   .addError;
 /**
- * Counts the logs in the Changelog collection.
- * @return {promise} A promise that resolves with the counted changelogs
+ * counts the changelogs in the Changelog collection.
+ * @return {promise} A promise that resolves with count of the changelogs
  */
 module.exports = () => {
   return Changelog.estimatedDocumentCount({})
@@ -15,5 +15,3 @@ module.exports = () => {
       errorAddEvent(err, "changelog query error");
     });
 };
-
-

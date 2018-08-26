@@ -13,4 +13,3 @@ module.exports = () => {
       errorAddEvent(err, "tasks query error");
     });
 };
-

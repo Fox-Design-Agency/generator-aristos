@@ -3,17 +3,16 @@ const Project = require("../../project");
 const errorAddEvent = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger")
   .addError;
 /**
- * Finds the sorted projects based on a param in the Project collection.
- * @param {object} stuff - The stuff to sort by.
- * @return {promise} A promise that resolves with the sorted projects based on the stuff param
+ * Finds the most recent project in the Project collection.
+ * @return {promise} A promise that resolves with the msot recent project
  */
-module.exports = stuff => {
-  return Project.find(stuff)
+module.exports = () => {
+  return Project.find({})
     .sort({ sorting: 1 })
     .populate("category")
     .populate("author")
+    .limit(1)
     .catch(err => {
       errorAddEvent(err, "project query error");
     });
 };
-

@@ -1,10 +1,10 @@
-require("./routes/admin_documentation_routes_checker").theFunction();
+require("./routes/checkers/admin_documentation_routes_checker").theFunction();
 const adminChangelong = require("./routes/changelog");
 const adminDocumentationCategories = require("./routes/documentation_categories");
 
 const fs = require("fs-extra");
 const adminDocumentation = fs.readJSONSync(
-  "./expansion/upgrade/documentation-builder/routes/documentationRoutes.json"
+  "./expansion/upgrade/documentation-builder/routes/checkers/documentationRoutes.json"
 ).route;
 const adminDocumentations = require(adminDocumentation);
 

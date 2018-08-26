@@ -14,4 +14,3 @@ module.exports = couponProps => {
     errorAddEvent(err, "coupon query error");
   });
 };
-

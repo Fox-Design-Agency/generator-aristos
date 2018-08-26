@@ -16,5 +16,3 @@ module.exports = (_id, blogCategoryProps) => {
     }
   );
 };
-
-

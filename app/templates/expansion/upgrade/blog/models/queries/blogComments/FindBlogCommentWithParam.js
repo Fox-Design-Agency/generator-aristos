@@ -12,5 +12,3 @@ module.exports = stuff => {
     errorAddEvent(err, "blog comment query error");
   });
 };
-
-

@@ -55,6 +55,9 @@ module.exports = {
   }, // end of cat index function
 
   addIndex(req, res, next) {
+    const addProduct = fs.readJSONSync(
+      "./expansion/upgrade/products/routes/checkers/productRoutes.json"
+    ).addView;
     let title,
       content,
       price,
@@ -76,7 +79,8 @@ module.exports = {
         description: description,
         keywords: keywords,
         inventory: inventory,
-        sku: sku
+        sku: sku,
+        pluginView: addProduct
       });
     });
   } /* end of add index function */,
@@ -96,12 +100,9 @@ module.exports = {
         if (!req.body.price) {
           errors.push({ title: "Price must have a value." });
         }
-        if (!imageFile) {
-          errors.push({ title: "You must upload an image." });
-        }
 
         let title = req.body.title;
-        let slug = title.replace(/\s+/g, "-").toLowerCase();
+        let slug = title.replace(/s+/g, "-").toLowerCase();
         let content = req.body.content;
         let price = req.body.price;
         let category = req.body.category;
@@ -237,6 +238,9 @@ module.exports = {
     });
   }, // end of create function
   editIndex(req, res, next) {
+    const editProduct = fs.readJSONSync(
+      "./expansion/upgrade/products/routes/checkers/productRoutes.json"
+    ).editView;
     Promise.all([
       FindAllProductCategories(),
       FindOneProductByID(req.params.id),
@@ -264,7 +268,8 @@ module.exports = {
             keywords: result[1].keywords,
             sku: result[1].printfile,
             inventory: result[1].inventory,
-            allowReviews: result[1].allowReviews
+            allowReviews: result[1].allowReviews,
+            pluginView: editProduct
           });
         }
       });
@@ -412,7 +417,6 @@ module.exports = {
     });
   } /* end of create gallery function */,
   deleteImage(req, res, next) {
- 
     let originalImage =
       "content/public/images/product_images/" +
       req.query.id +
@@ -433,17 +437,18 @@ module.exports = {
             errorAddEvent(err);
           } else {
             req.flash("success_msg", "Image deleted!");
-            res.redirect("/admin/products/edit-product/" + req.query.id + "#gallery");
+            res.redirect(
+              "/admin/products/edit-product/" + req.query.id + "#gallery"
+            );
           }
         });
       }
     });
-  }, /* end of delete image function */
+  } /* end of delete image function */,
 
   deleteProduct(req, res, next) {
     let id = req.params.id;
     let path = "content/public/images/product_images/" + id;
-
     fs.remove(path, err => {
       if (err) {
         errorAddEvent(err);

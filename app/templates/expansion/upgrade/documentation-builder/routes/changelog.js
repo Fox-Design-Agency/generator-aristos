@@ -47,4 +47,3 @@ router.post("/reorder-logs", changelogController.reorder);
 
 /* Exports */
 module.exports = router;
-

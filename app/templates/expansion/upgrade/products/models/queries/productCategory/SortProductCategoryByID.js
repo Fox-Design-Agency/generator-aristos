@@ -38,4 +38,3 @@ function sortProductCategories(ids, cb) {
     })(count);
   }
 } /* end of sort products function */
-

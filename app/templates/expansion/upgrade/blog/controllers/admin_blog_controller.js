@@ -185,9 +185,9 @@ module.exports = {
         }
 
         let title = req.body.title;
-        let slug = req.body.slug.replace(/s+/g, "-").toLowerCase();
+        let slug = req.body.slug.replace(/\s+/g, "-").toLowerCase();
         if (slug == "") {
-          slug = title.replace(/s+/g, "-").toLowerCase();
+          slug = title.replace(/\s+/g, "-").toLowerCase();
         }
         let content = req.body.content;
         let id = req.params.id;

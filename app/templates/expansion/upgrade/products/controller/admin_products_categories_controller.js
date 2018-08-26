@@ -31,12 +31,12 @@ module.exports = {
     );
   }, // end of index function
   addIndex(req, res, next) {
+  
     let title,
       author,
       description,
       keywords,
       imagePath = "";
-
     const AllMedia = FindAllMedia();
     AllMedia.then(media => {
       res.render(
@@ -47,7 +47,7 @@ module.exports = {
           description: description,
           keywords: keywords,
           imagePath: imagePath,
-          media: media
+          media: media,
         }
       );
     });
@@ -61,7 +61,7 @@ module.exports = {
           errors.push({ text: "Title must have a value." });
         }
         let title = req.body.title;
-        let slug = title.replace(/\s+/g, "-").toLowerCase();
+        let slug = title.replace(/s+/g, "-").toLowerCase();
         let author = req.session.passport.user;
         let description = req.body.description;
         let keywords = req.body.keywords;
@@ -146,7 +146,7 @@ module.exports = {
           errors.push({ text: "Title must have a value." });
         }
         let title = req.body.title;
-        let slug = title.replace(/\s+/g, "-").toLowerCase();
+        let slug = title.replace(/s+/g, "-").toLowerCase();
         let id = req.params.id;
         let description = req.body.description;
         let keywords = req.body.keywords;

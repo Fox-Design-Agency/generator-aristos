@@ -13,5 +13,3 @@ module.exports = _id => {
     errorAddEvent(err, "documentation query error");
   });
 };
-
-

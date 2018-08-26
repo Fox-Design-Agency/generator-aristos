@@ -21,7 +21,7 @@
                     <label for="">Image</label>
                     <select name="imagepath">
                             <% media.forEach(function(media){ %>
-                                <% if(media.category == "product_categories"){ %>
+                                <% if(media.category.title == "product_categories"){ %>
                                     <option value="<%= media.path %>">
                                         <%= media.title %>
                                     </option>

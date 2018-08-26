@@ -13,6 +13,3 @@ module.exports = _id => {
       errorAddEvent(err, "blog comment query error");
     });
   };
-  
-  
-  
