@@ -12,6 +12,12 @@ module.exports = class extends Generator {
   //   }
   constructor(args, opts) {
     super(args, opts);
+    /* This makes color options available as options to be passed via --name */
+    this.option("orange");
+    this.option("pink");
+    this.option("purple");
+    this.option("blue");
+
     /* This makes upgrade available as options to be passed via --name */
     this.option("blog");
     this.option("contact");
@@ -109,6 +115,32 @@ module.exports = class extends Generator {
   importantStuffs() {
     this.fs.copy(this.templatePath("important"), "important");
     let prompts = this.config.get("promptValues");
+    /* check colors */
+    if (this.options.orange) {
+      this.fs.copy(
+        this.templatePath("AdminColors/OrangeThing.css"),
+        "important/admin/admincss/base/_variables.css"
+      );
+    }
+    if (this.options.pink) {
+      this.fs.copy(
+        this.templatePath("AdminColors/pink.css"),
+        "important/admin/admincss/base/_variables.css"
+      );
+    }
+    if (this.options.purple) {
+      this.fs.copy(
+        this.templatePath("AdminColors/purpleish.css"),
+        "important/admin/admincss/base/_variables.css"
+      );
+    }
+    if (this.options.blue) {
+      this.fs.copy(
+        this.templatePath("AdminColors/somewhatBlue.css"),
+        "important/admin/admincss/base/_variables.css"
+      );
+    }
+    /* end of color checks */
     // create the stuffs.json file
     this.fs.write(
       "important/AppStuff/config/stuff.json",
@@ -116,7 +148,7 @@ module.exports = class extends Generator {
         prompts.mongoURI
       }"},{"name": "site-title","info": "${
         prompts.site
-      }"},{"name":"aristosVersion","info": "0.2.0"},{"name": "sessionSecret","info": "sfjdnsjkfnslkejbnsifube93wjn8jg"}]`
+      }"},{"name":"aristosVersion","info": "0.3.0"},{"name": "sessionSecret","info": "dfsldjfhskjfnblwekbfewzaw"}]`
     );
     //create db collection
     //hash pass
