@@ -46,10 +46,25 @@ yo aristos --products --blog
 
 You can also change the default color layout by using the flags:
 ```
+--blackWhite
+--blueGreen
+--cappuccino
+--castiel
+--dollhouse
+--emerald
+--fire
+--forest
+--interesting
+--lavander
 --blue
 --orange
 --pink
 --purple
+--sea
+--smoke
+--strange
+--summer
+--sweets
 ```
 an example of using the color option flags are as shown:
 ```

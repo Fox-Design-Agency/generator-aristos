@@ -26,7 +26,6 @@ module.exports = class extends Generator {
     this.option("orange");
     this.option("pink");
     this.option("purple");
-    this.option("orange");
     this.option("sea");
     this.option("smoke");
     this.option("blue");
