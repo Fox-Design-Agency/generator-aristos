@@ -36,7 +36,6 @@ module.exports = {
       description,
       keywords,
       author = "";
-
     Promise.all([FindAllTemplates(), FindAllMedia()]).then(results => {
       res.render("../../../important/admin/views/pages/add_page", {
         title: title,
