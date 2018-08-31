@@ -9,20 +9,21 @@
       "link": "/admin/documentation-builder/add-documentation"
     },
     {
-      "name": "add category",
-      "link": "/admin/documentation-builder-categories/add-documentation-category"
-    },
-    {
       "name": "add changelog",
       "link": "/admin/changelog-builder/add-log"
     },
     {
-      "name": "see all categories",
-      "link": "/admin/documentation-builder-categories"
+      "name": "add category",
+      "link": "/admin/documentation-builder-categories/add-documentation-category"
     },
+
     {
       "name": "see all changelogs",
       "link": "/admin/changelog-builder"
+    },
+    {
+      "name": "see all categories",
+      "link": "/admin/documentation-builder-categories"
     }
   ]
 }

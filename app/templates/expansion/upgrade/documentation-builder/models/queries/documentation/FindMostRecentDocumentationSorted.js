@@ -1,4 +1,8 @@
-const Documentation = require("../../documentation");
+const fs = require("fs-extra");
+const Documentations = fs.readJSONSync(
+  "./expansion/upgrade/documentation-builder/routes/checkers/documentationModelRoutes.json"
+).route;
+const Documentation = require(Documentations);
 /* Aristos Logger Path */
 const errorAddEvent = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger")
   .addError;

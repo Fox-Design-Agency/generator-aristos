@@ -1,7 +1,7 @@
 const errorAddEvent = require("../../../../important/AristosStuff/AristosLogger/AristosLogger")
   .addError;
 
-// Documentation model Queries
+/* Documentation model Queries */
 const CountDocumentation = require("../models/queries/documentation/CountDocumentation");
 const FindAllDocumentation = require("../models/queries/documentation/FindAllDocumentation");
 const FindDocumentationWithParams = require("../models/queries/documentation/FindDocumentationWithParams");
@@ -22,10 +22,11 @@ const FindAllDocumentationCategories = require("../models/queries/documentationC
 const FindOneUserByID = require("../../../../important/admin/adminModels/queries/user/FindOneUserWithID");
 module.exports = {
   index(req, res, next) {
-    const sorted = FindAllSortedDocumentation();
-    const cats = FindAllDocumentationCategories();
-    const theCount = CountDocumentation();
-    Promise.all([sorted, cats, theCount]).then(result => {
+    Promise.all([
+      FindAllSortedDocumentation(),
+      FindAllDocumentationCategories(),
+      CountDocumentation()
+    ]).then(result => {
       res.render(
         "../../../expansion/upgrade/documentation-builder/views/documentation",
         {
@@ -37,12 +38,13 @@ module.exports = {
     });
   } /* end of index function */,
   catIndex(req, res, next) {
-    const cats = FindAllDocumentationCategories();
-    const sorted = FindAllSortedDocumentationWithParams({
-      category: req.params.category
-    });
-    const theCount = CountDocumentation();
-    Promise.all([sorted, cats, theCount]).then(result => {
+    Promise.all([
+      FindAllSortedDocumentationWithParams({
+        category: req.params.category
+      }),
+      FindAllDocumentationCategories(),
+      CountDocumentation()
+    ]).then(result => {
       res.render(
         "../../../expansion/upgrade/documentation-builder/views/documentation",
         {
@@ -58,24 +60,23 @@ module.exports = {
       content,
       price,
       keywords,
-      description,
-      author = "";
-    const AllDocumentationCategories = FindAllDocumentationCategories();
-    const AllMedia = FindAllMedia();
-    Promise.all([AllDocumentationCategories, AllMedia]).then(result => {
-      res.render(
-        "../../../expansion/upgrade/documentation-builder/views/add_documentation",
-        {
-          title: title,
-          content: content,
-          categories: result[0],
-          price: price,
-          media: result[1],
-          description: description,
-          keywords: keywords
-        }
-      );
-    });
+      description = "";
+    Promise.all([FindAllDocumentationCategories(), FindAllMedia()]).then(
+      result => {
+        res.render(
+          "../../../expansion/upgrade/documentation-builder/views/add_documentation",
+          {
+            title: title,
+            content: content,
+            categories: result[0],
+            price: price,
+            media: result[1],
+            description: description,
+            keywords: keywords
+          }
+        );
+      }
+    );
   } /* end of add index function */,
 
   create(req, res, next) {
@@ -99,22 +100,22 @@ module.exports = {
         let author = req.session.passport.user;
 
         if (errors.length > 0) {
-          const AllDocumentationCategories = FindAllDocumentationCategories();
-          const AllMedia = FindAllMedia();
-          Promise.all([AllDocumentationCategories, AllMedia]).then(result => {
-            res.render(
-              "../../../expansion/upgrade/documentation-builder/views/add_documentation",
-              {
-                errors: errors,
-                title: title,
-                content: content,
-                categories: result[0],
-                media: result[1],
-                description: description,
-                keywords: keywords
-              }
-            );
-          });
+          Promise.all([FindAllDocumentationCategories(), FindAllMedia()]).then(
+            result => {
+              res.render(
+                "../../../expansion/upgrade/documentation-builder/views/add_documentation",
+                {
+                  errors: errors,
+                  title: title,
+                  content: content,
+                  categories: result[0],
+                  media: result[1],
+                  description: description,
+                  keywords: keywords
+                }
+              );
+            }
+          );
         } else {
           const ProjectProps = {
             title: title,
@@ -138,13 +139,10 @@ module.exports = {
   } /* end of create function */,
 
   editIndex(req, res, next) {
-    const AllDocumentationCategories = FindAllDocumentationCategories();
-    const FoundDocumentation = FindOneDocumentationByID(req.params.id);
-    const AllMedia = FindAllMedia();
     Promise.all([
-      AllDocumentationCategories,
-      FoundDocumentation,
-      AllMedia
+      FindAllDocumentationCategories(),
+      FindOneDocumentationByID(req.params.id),
+      FindAllMedia()
     ]).then(result => {
       res.render(
         "../../../expansion/upgrade/documentation-builder/views/edit_documentation",
@@ -223,6 +221,5 @@ module.exports = {
         res.redirect("/users/login");
       }
     });
-  }/* end of reorder documentation */
+  } /* end of reorder documentation */
 };
-

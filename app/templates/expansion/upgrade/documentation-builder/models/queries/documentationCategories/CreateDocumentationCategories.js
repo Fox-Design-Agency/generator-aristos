@@ -13,4 +13,3 @@ module.exports = docCatsProps => {
     errorAddEvent(err, "documentation category query error");
   });
 };
-

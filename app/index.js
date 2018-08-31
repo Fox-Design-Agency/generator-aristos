@@ -13,10 +13,26 @@ module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
     /* This makes color options available as options to be passed via --name */
+    this.option("blackWhite");
+    this.option("blueGreen");
+    this.option("cappuccino");
+    this.option("castiel");
+    this.option("dollhouse");
+    this.option("emerald");
+    this.option("fire");
+    this.option("forest");
+    this.option("interesting");
+    this.option("lavander");
     this.option("orange");
     this.option("pink");
     this.option("purple");
+    this.option("orange");
+    this.option("sea");
+    this.option("smoke");
     this.option("blue");
+    this.option("strange");
+    this.option("summer");
+    this.option("sweets");
 
     /* This makes upgrade available as options to be passed via --name */
     this.option("blog");
@@ -116,6 +132,66 @@ module.exports = class extends Generator {
     this.fs.copy(this.templatePath("important"), "important");
     let prompts = this.config.get("promptValues");
     /* check colors */
+    if (this.options.blackWhite) {
+      this.fs.copy(
+        this.templatePath("AdminColors/BlackWhite.css"),
+        "important/admin/admincss/base/_variables.css"
+      );
+    }
+    if (this.options.blueGreen) {
+      this.fs.copy(
+        this.templatePath("AdminColors/BlueGreen.css"),
+        "important/admin/admincss/base/_variables.css"
+      );
+    }
+    if (this.options.cappuccino) {
+      this.fs.copy(
+        this.templatePath("AdminColors/Cappuccino.css"),
+        "important/admin/admincss/base/_variables.css"
+      );
+    }
+    if (this.options.castiel) {
+      this.fs.copy(
+        this.templatePath("AdminColors/Castiel.css"),
+        "important/admin/admincss/base/_variables.css"
+      );
+    }
+    if (this.options.dollhouse) {
+      this.fs.copy(
+        this.templatePath("AdminColors/Dollhouse.css"),
+        "important/admin/admincss/base/_variables.css"
+      );
+    }
+    if (this.options.emerald) {
+      this.fs.copy(
+        this.templatePath("AdminColors/Emerald.css"),
+        "important/admin/admincss/base/_variables.css"
+      );
+    }
+    if (this.options.fire) {
+      this.fs.copy(
+        this.templatePath("AdminColors/Fire.css"),
+        "important/admin/admincss/base/_variables.css"
+      );
+    }
+    if (this.options.forest) {
+      this.fs.copy(
+        this.templatePath("AdminColors/Forest.css"),
+        "important/admin/admincss/base/_variables.css"
+      );
+    }
+    if (this.options.interesting) {
+      this.fs.copy(
+        this.templatePath("AdminColors/Interesting.css"),
+        "important/admin/admincss/base/_variables.css"
+      );
+    }
+    if (this.options.lavander) {
+      this.fs.copy(
+        this.templatePath("AdminColors/Lavander.css"),
+        "important/admin/admincss/base/_variables.css"
+      );
+    }
     if (this.options.orange) {
       this.fs.copy(
         this.templatePath("AdminColors/OrangeThing.css"),
@@ -134,9 +210,39 @@ module.exports = class extends Generator {
         "important/admin/admincss/base/_variables.css"
       );
     }
+    if (this.options.sea) {
+      this.fs.copy(
+        this.templatePath("AdminColors/Sea.css"),
+        "important/admin/admincss/base/_variables.css"
+      );
+    }
+    if (this.options.smoke) {
+      this.fs.copy(
+        this.templatePath("AdminColors/Smoke.css"),
+        "important/admin/admincss/base/_variables.css"
+      );
+    }
     if (this.options.blue) {
       this.fs.copy(
         this.templatePath("AdminColors/somewhatBlue.css"),
+        "important/admin/admincss/base/_variables.css"
+      );
+    }
+    if (this.options.strange) {
+      this.fs.copy(
+        this.templatePath("AdminColors/Strange.css"),
+        "important/admin/admincss/base/_variables.css"
+      );
+    }
+    if (this.options.summer) {
+      this.fs.copy(
+        this.templatePath("AdminColors/Summer.css"),
+        "important/admin/admincss/base/_variables.css"
+      );
+    }
+    if (this.options.sweets) {
+      this.fs.copy(
+        this.templatePath("AdminColors/Sweets.css"),
         "important/admin/admincss/base/_variables.css"
       );
     }

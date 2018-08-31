@@ -1,4 +1,8 @@
-const Changelog = require("../../changelog");
+const fs = require("fs-extra");
+const Changelogs = fs.readJSONSync(
+  "./expansion/upgrade/documentation-builder/routes/checkers/changelogModelRoutes.json"
+).route;
+const Changelog = require(Changelogs);
 /* Aristos Logger Path */
 const errorAddEvent = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger")
   .addError;

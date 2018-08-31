@@ -30,6 +30,7 @@ module.exports = {
         }
       });
     });
+    /* default contact routes */
     fs.pathExists(
       "./expansion/upgrade/contact/routes/checkers/contactRoutes.json",
       (err, exists) => {
@@ -43,5 +44,21 @@ module.exports = {
         }
       }
     );
+    /* end of default contact routes */
+    /* default contact model routes */
+    fs.pathExists(
+      "./expansion/upgrade/contact/routes/checkers/contactModelRoutes.json",
+      (err, exists) => {
+        if (!exists) {
+          fs.writeJson(
+            "./expansion/upgrade/contact/routes/checkers/contactModelRoutes.json",
+            {
+              route: "../contactMessage"
+            }
+          );
+        }
+      }
+    );
+     /* end of default contact model routes */
   }
 };

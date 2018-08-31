@@ -34,6 +34,7 @@ module.exports = {
         }
       });
     });
+    /* default product routes */
     fs.pathExists(
       "./expansion/upgrade/products/routes/checkers/productRoutes.json",
       (err, exists) => {
@@ -48,5 +49,73 @@ module.exports = {
         }
       }
     );
+    fs.pathExists(
+      "./expansion/upgrade/products/routes/checkers/productCouponRoutes.json",
+      (err, exists) => {
+        if (!exists) {
+          fs.writeJson(
+            "./expansion/upgrade/products/routes/checkers/productCouponRoutes.json",
+            {
+              route: "./routes/admin_product_coupons"
+            }
+          );
+        }
+      }
+    );
+    fs.pathExists(
+      "./expansion/upgrade/products/routes/checkers/productOrderRoutes.json",
+      (err, exists) => {
+        if (!exists) {
+          fs.writeJson(
+            "./expansion/upgrade/products/routes/checkers/productOrderRoutes.json",
+            {
+              route: "./routes/admin_product_orders"
+            }
+          );
+        }
+      }
+    );
+    /* end of default product routes */
+    /* default product Model routes */
+    fs.pathExists(
+      "./expansion/upgrade/products/routes/checkers/productModelRoutes.json",
+      (err, exists) => {
+        if (!exists) {
+          fs.writeJson(
+            "./expansion/upgrade/products/routes/checkers/productModelRoutes.json",
+            {
+              route: "../../product"
+            }
+          );
+        }
+      }
+    );
+    fs.pathExists(
+      "./expansion/upgrade/products/routes/checkers/productCouponModelRoutes.json",
+      (err, exists) => {
+        if (!exists) {
+          fs.writeJson(
+            "./expansion/upgrade/products/routes/checkers/productCouponModelRoutes.json",
+            {
+              route: "../../coupons"
+            }
+          );
+        }
+      }
+    );
+    fs.pathExists(
+      "./expansion/upgrade/products/routes/checkers/productOrderModelRoutes.json",
+      (err, exists) => {
+        if (!exists) {
+          fs.writeJson(
+            "./expansion/upgrade/products/routes/checkers/productOrderModelRoutes.json",
+            {
+              route: "../../orders"
+            }
+          );
+        }
+      }
+    );
+    /* end of default product Model routes */
   }
 };

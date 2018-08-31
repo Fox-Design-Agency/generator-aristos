@@ -16,4 +16,3 @@ module.exports = (_id, docCatsProps) => {
     }
   );
 };
-

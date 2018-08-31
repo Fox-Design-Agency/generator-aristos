@@ -89,7 +89,7 @@ Currently no contributions outside of [Fox Design Agency](https://foxdesignagenc
 
 ## Acknowledgments
 
-* This will be updated soon.
+- alternative color themes adapted from [color-hex](http://www.color-hex.com/color-palettes/)
 
 ## License
 

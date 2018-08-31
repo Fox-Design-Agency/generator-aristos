@@ -17,7 +17,7 @@ module.exports = ids => {
   });
 }; //* end of exports */
 /* Sort pages function */
-/* rebuild so that pages sort in category view use all pages id to not mess up ordering */
+/* rebuild so that doc categoris sort in category view use all categories id to not mess up ordering */
 function sortDocumentationCats(ids, cb) {
   let count = 0;
 
@@ -37,5 +37,4 @@ function sortDocumentationCats(ids, cb) {
       });
     })(count);
   }
-} /* end of sort pages function */
-
+} /* end of sort doc categories function */

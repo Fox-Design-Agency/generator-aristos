@@ -14,4 +14,3 @@ module.exports = stuff => {
       errorAddEvent(err, "documentation category query error");
     });
 };
-

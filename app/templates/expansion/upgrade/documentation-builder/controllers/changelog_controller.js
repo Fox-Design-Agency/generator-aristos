@@ -23,11 +23,11 @@ const FindAllDocumentationCategories = require("../models/queries/documentationC
 const FindOneUserByID = require("../../../../important/admin/adminModels/queries/user/FindOneUserWithID");
 module.exports = {
   index(req, res, next) {
-    const cats = FindAllDocumentationCategories();
-    const sorted = FindAllSortedLogs();
-    const theCount = CountLogs();
-    Promise.all([sorted, cats, theCount]).then(result => {
-
+    Promise.all([
+      FindAllSortedLogs(),
+      FindAllDocumentationCategories(),
+      CountLogs()
+    ]).then(result => {
       res.render(
         "../../../expansion/upgrade/documentation-builder/views/changelog",
         {
@@ -39,10 +39,11 @@ module.exports = {
     });
   } /* end of index function */,
   catIndex(req, res, next) {
-    const cats = FindAllDocumentationCategories();
-    const sorted = FindSortedLogsWithParam({ category: req.params.category });
-    const theCount = CountLogs();
-    Promise.all([sorted, cats, theCount]).then(result => {
+    Promise.all([
+      FindSortedLogsWithParam({ category: req.params.category }),
+      FindAllDocumentationCategories(),
+      CountLogs()
+    ]).then(result => {
       res.render(
         "../../../expansion/upgrade/documentation-builder/views/changelog",
         {
@@ -60,23 +61,23 @@ module.exports = {
       keywords,
       description,
       author = "";
-    const allDocumentationCategories = FindAllDocumentationCategories();
-    const AllMedia = FindAllMedia();
-    Promise.all([allDocumentationCategories, AllMedia]).then(result => {
-      res.render(
-        "../../../expansion/upgrade/documentation-builder/views/add_changelog",
-        {
-          title: title,
-          content: content,
-          categories: result[0],
-          price: price,
-          media: result[1],
-          description: description,
-          keywords: keywords,
-          author: author
-        }
-      );
-    });
+    Promise.all([FindAllDocumentationCategories(), FindAllMedia()]).then(
+      result => {
+        res.render(
+          "../../../expansion/upgrade/documentation-builder/views/add_changelog",
+          {
+            title: title,
+            content: content,
+            categories: result[0],
+            price: price,
+            media: result[1],
+            description: description,
+            keywords: keywords,
+            author: author
+          }
+        );
+      }
+    );
   } /* end of add index function */,
 
   create(req, res, next) {
@@ -100,47 +101,49 @@ module.exports = {
         let author = req.session.passport.user;
 
         if (errors.length > 0) {
-          const AllDocumentationCategories = FindAllDocumentationCategories();
-          const AllMedia = FindAllMedia();
-          Promise.all([AllDocumentationCategories, AllMedia]).then(result => {
-            res.render(
-              "../../../expansion/upgrade/documentation-builder/views/add_changelog",
-              {
-                errors: errors,
-                title: title,
-                content: content,
-                categories: result[0],
-                media: result[1],
-                description: description,
-                keywords: keywords,
-                author: author
-              }
-            );
-          });
+          Promise.all([FindAllDocumentationCategories(), FindAllMedia()]).then(
+            result => {
+              res.render(
+                "../../../expansion/upgrade/documentation-builder/views/add_changelog",
+                {
+                  errors: errors,
+                  title: title,
+                  content: content,
+                  categories: result[0],
+                  media: result[1],
+                  description: description,
+                  keywords: keywords,
+                  author: author
+                }
+              );
+            }
+          );
         } else {
-          const CheckIfExists = FindLogsWithParams({ slug: slug, category: category });
+          const CheckIfExists = FindLogsWithParams({
+            slug: slug,
+            category: category
+          });
           CheckIfExists.then(project => {
             if (project.length > 0) {
               errors.push({ text: "Log title exists, chooser another." });
-              const AllDocumentationCategories = FindAllDocumentationCategories();
-              const AllMedia = FindAllMedia();
-              Promise.all([AllDocumentationCategories, AllMedia]).then(
-                result => {
-                  res.render(
-                    "../../../expansion/upgrade/documentation-builder/views/add_changelog",
-                    {
-                      errors: errors,
-                      title: "",
-                      content: content,
-                      categories: result[0],
-                      media: result[1],
-                      description: description,
-                      keywords: keywords,
-                      author: author
-                    }
-                  );
-                }
-              );
+              Promise.all([
+                FindAllDocumentationCategories(),
+                FindAllMedia()
+              ]).then(result => {
+                res.render(
+                  "../../../expansion/upgrade/documentation-builder/views/add_changelog",
+                  {
+                    errors: errors,
+                    title: "",
+                    content: content,
+                    categories: result[0],
+                    media: result[1],
+                    description: description,
+                    keywords: keywords,
+                    author: author
+                  }
+                );
+              });
             } else {
               const ProjectProps = {
                 title: title,
@@ -165,27 +168,26 @@ module.exports = {
   } /* end of create function */,
 
   editIndex(req, res, next) {
-    const AllDocumentationCategories = FindAllDocumentationCategories();
-    const FoundLog = FindOneLogsByID(req.params.id);
-    const AllMedia = FindAllMedia();
-    Promise.all([AllDocumentationCategories, FoundLog, AllMedia]).then(
-      result => {
-        res.render(
-          "../../../expansion/upgrade/documentation-builder/views/edit_changelog",
-          {
-            title: result[1].title,
-            content: result[1].content,
-            categories: result[0],
-            selectedCat: result[1].category,
-            id: result[1]._id,
-            media: result[2],
-            author: result[1].author,
-            description: result[1].description,
-            keywords: result[1].keywords
-          }
-        );
-      }
-    );
+    Promise.all([
+      FindAllDocumentationCategories(),
+      FindOneLogsByID(req.params.id),
+      FindAllMedia()
+    ]).then(result => {
+      res.render(
+        "../../../expansion/upgrade/documentation-builder/views/edit_changelog",
+        {
+          title: result[1].title,
+          content: result[1].content,
+          categories: result[0],
+          selectedCat: result[1].category,
+          id: result[1]._id,
+          media: result[2],
+          author: result[1].author,
+          description: result[1].description,
+          keywords: result[1].keywords
+        }
+      );
+    });
   } /* end of edit index function */,
 
   edit(req, res, next) {

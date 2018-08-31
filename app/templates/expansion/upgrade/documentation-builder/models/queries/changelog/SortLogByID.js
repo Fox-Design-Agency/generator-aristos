@@ -1,4 +1,8 @@
-const Changelog = require("../../changelog");
+const fs = require("fs-extra");
+const Changelogs = fs.readJSONSync(
+  "./expansion/upgrade/documentation-builder/routes/checkers/changelogModelRoutes.json"
+).route;
+const Changelog = require(Changelogs);
 /* Aristos Logger Path */
 const errorAddEvent = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger")
   .addError;
@@ -14,8 +18,8 @@ module.exports = ids => {
     errorAddEvent(err, "changelog query error");
   });
 }; //* end of exports */
-/* Sort pages function */
-/* rebuild so that pages sort in category view use all pages id to not mess up ordering */
+/* Sort changelogs function */
+/* rebuild so that changelogs sort in category view use all changelogs id to not mess up ordering */
 function sortLogs(ids, cb) {
   let count = 0;
 
@@ -35,6 +39,4 @@ function sortLogs(ids, cb) {
       });
     })(count);
   }
-} /* end of sort pages function */
-
-
+} /* end of sort changelogs function */

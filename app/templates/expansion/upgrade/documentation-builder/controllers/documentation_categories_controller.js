@@ -44,8 +44,7 @@ module.exports = {
       author,
       description,
       keywords = "";
-    const AllMedia = FindAllMedia();
-    AllMedia.then(media => {
+    FindAllMedia().then(media => {
       res.render(
         "../../../expansion/upgrade/documentation-builder/views/categories/add_documentation_category",
         {
@@ -113,6 +112,7 @@ module.exports = {
                 slug: slug,
                 description: description,
                 keywords: keywords,
+                author: author,
                 sorting: 0
               };
               CreateDocumentationCategory(CategoryProps);

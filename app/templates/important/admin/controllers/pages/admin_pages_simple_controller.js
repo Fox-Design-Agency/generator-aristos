@@ -143,7 +143,7 @@ module.exports = {
         let ids = req.body["id[]"];
         SortPagesByID(ids);
         FindAllSortedPages().then(sortedRes => {
-          res.app.locals.pages = sortedRes;
+          req.app.locals.pages = sortedRes;
           res.redirect("/admin/pages");
         });
       } else {

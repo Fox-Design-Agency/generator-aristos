@@ -1,4 +1,8 @@
-const Project = require("../../project");
+const fs = require("fs-extra");
+const Projects = fs.readJSONSync(
+  "./expansion/upgrade/portfolio-projects/routes/checkers/portfolioModelRoutes.json"
+).route;
+const Project = require(Projects);
 /* Aristos Logger Path */
 const errorAddEvent = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger")
   .addError;
@@ -15,4 +19,3 @@ module.exports = () => {
       errorAddEvent(err, "project query error");
     });
 };
-
