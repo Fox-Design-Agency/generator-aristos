@@ -21,10 +21,6 @@ try {
 }
 module.exports = app => {
   /* */
-  require("../../expansion")(app);
-  require("../../content/theme")(app);
-  /* */
-
   app.use("/admin/add-media", adminAddMedia);
   app.use("/admin/media-categories", adminMediaCategories);
   app.use("/admin/template-builder", adminTemplateBuilder);
@@ -34,5 +30,10 @@ module.exports = app => {
   app.use("/admin/logs-viewer", adminLogsViewer);
   app.use("/admin/updater", adminUpdater);
   app.use("/admin", adminHome);
+  /* */
+
+  /* */
+  require("../../expansion")(app);
+  require("../../content/theme")(app);
   /* */
 };

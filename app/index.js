@@ -253,7 +253,7 @@ module.exports = class extends Generator {
         prompts.mongoURI
       }"},{"name": "site-title","info": "${
         prompts.site
-      }"},{"name":"aristosVersion","info": "0.3.0"},{"name": "sessionSecret","info": "dfsldjfhskjfnblwekbfewzaw"}]`
+      }"},{"name":"aristosVersion","info": "0.3.1"},{"name": "sessionSecret","info": "dfsldjfhskjfnblwekbfewzaw"}]`
     );
     //create db collection
     //hash pass
